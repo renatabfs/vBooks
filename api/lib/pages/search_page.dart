@@ -15,26 +15,49 @@ class _SearchPageState extends State<SearchPage> {
         children: [
            Container (
             height: 150,
-            color: Colors.red,
+        child: Padding (
+        padding: EdgeInsets.fromLTRB (36,40,36,36),
         child: Form(
         child: TextFormField (
           style: TextStyle(
-            color: Colors.red,
+            color: Color.fromARGB(255, 197, 76, 76),
           ),
           decoration: InputDecoration (
+          filled: true,
+          fillColor: Color(0xFFBDB8D9),
           prefixIcon: Icon(Icons.search),
-          contentPadding: EdgeInsets.fromLTRB(30, 20, 30, 20),
           border: OutlineInputBorder (
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide(width: 0,
+            color: Colors.red,
             style: BorderStyle.none,
             ),
           ),
-          hintText: "Pesquisar livro"
+          hintText: "Pesquisar livro",
+        ),
         ),
       ),
       ),
       ),
+      Expanded (
+        child: Container (
+          child: Column (
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding (
+              padding: EdgeInsets.fromLTRB(48,32,308,24),
+              child: Text("Top Livros",
+                style: TextStyle (
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                fontFamily: 'Poppins'
+              ),
+              ),
+              )
+            ],
+          )
+        )
+      )
         ],
       ),
       );

@@ -1,3 +1,4 @@
+import 'package:api/domain/autores.dart';
 import 'package:api/domain/livros.dart';
 
 class BD {
@@ -121,8 +122,28 @@ class BD {
       sinopse: "Bem-vindo ao ensino de JavaScript & jQuery. Você é iniciante em JavaScript, ou adicionou scripts a sua página web mas quer entender melhor como tudo funciona? Então este livro é para você. Não mostraremos apenas como ler e escrever em JavaScript, mas também ensinaremos o básico sobre programação de computadores de forma simples e visual. Tudo o que você precisa é entender um pouco sobre HTML e CSS. Este livro ensinará como tornar seus websites mais interativos, atraentes, e funcionais. Isso acontece ao combinar teoria de programação com exemplos que demonstram como o JavaScript e o jQuery são usados em sites populares. De forma rápida, você será capaz de pensar e programar como um profissional.APRENDA COMO:•Ler e escrever em JavaScript Tornar seus sites mais interativos;•Usar jQuery para simplificar seu código;•Recriar técnicas populares da web.TÉCNICAS INCLUSAS:•Apresentações de slides e janelas modais;•Aprimoramento de formulários e validações;•Como usar Ajax, APIs, e JSON;•Filtros, pesquisa e ordenação.",
       id: 17
     ),
-
+ ];
+ static List <Autores> listaAutores = [ 
+    Autores (
+    nome: "John D.",
+    imagem: "https://media-exp1.licdn.com/dms/image/C4E03AQFkMw75gVBcsQ/profile-displayphoto-shrink_200_200/0/1516280999566?e=2147483647&v=beta&t=EHYQMy45LM0znBpFOb3WWqo3jAYokxu5-jhMHslv72E",
+    id: 1,
+    ),
+    Autores (
+    nome: "Robert C.M",
+    imagem: "https://m.media-amazon.com/images/I/61b7VTCUEfL._SY600_.jpg",
+    id: 2,
+    ),
+    Autores (
+    nome: "Pete G.",
+    imagem: "https://images-na.ssl-images-amazon.com/images/I/41PFGXAhgUL._UY200_.png",
+    id: 3,
+    ),
+    Autores (
+    nome: "Douglas C.",
+    imagem: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Douglas_Crockford%2C_February_2013.jpg/1200px-Douglas_Crockford%2C_February_2013.jpg",
+    id: 4,
+    ),
     
-
-  ];
+ ];
 }

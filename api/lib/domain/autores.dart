@@ -1,7 +1,7 @@
 class Autores {
   String nome;
   String imagem;
-  int id;
+  double id;
 
 Autores ({
   required this.nome,

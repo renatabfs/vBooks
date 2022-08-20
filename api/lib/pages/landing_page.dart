@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:api/pages/login.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -50,12 +51,19 @@ class _LandingPageState extends State<LandingPage> {
             ),
             Container(
               width: double.infinity,
+              constraints: BoxConstraints(maxWidth: 300),
               decoration: BoxDecoration(
                 color: Color(0xFF412F59),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) {
+                        return const Login();
+                      },
+                    ));
+                  },
                   child: Padding(
                     padding: EdgeInsets.all(10),
                     child: Text(

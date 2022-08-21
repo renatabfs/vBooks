@@ -1,10 +1,10 @@
-class Usuarios {
+class Usuario {
   int id;
   String nome;
   String email;
   String senha;
 
-  Usuarios(
+  Usuario(
       {required this.nome,
       required this.email,
       required this.senha,

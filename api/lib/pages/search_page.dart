@@ -16,47 +16,46 @@ class _SearchPageState extends State<SearchPage> {
            Container (
             height: 150,
         child: Padding (
-        padding: EdgeInsets.fromLTRB (36,40,36,36),
-        child: Form(
-        child: TextFormField (
+        padding: EdgeInsets.fromLTRB (36,40,36,48),
+        child: SizedBox (
+          width: 346,
+          height: 56,
+          child: TextField (
           style: TextStyle(
-            color: Color.fromARGB(255, 197, 76, 76),
+            color: Color(0XFFBDB8D9)
           ),
           decoration: InputDecoration (
+          labelText: "Pesquisar livro",
           filled: true,
-          fillColor: Color(0xFFBDB8D9),
+          fillColor: Color(0xFFEEEEEE),
           prefixIcon: Icon(Icons.search),
-          border: OutlineInputBorder (
-            borderRadius: BorderRadius.circular(12),
+          enabledBorder: OutlineInputBorder (
             borderSide: BorderSide(width: 0,
             color: Colors.red,
             style: BorderStyle.none,
             ),
+            borderRadius: BorderRadius.circular(12),
           ),
-          hintText: "Pesquisar livro",
+          ),
+          ),
         ),
-        ),
-      ),
       ),
       ),
       Expanded (
+        child: Padding (
+          padding: EdgeInsets.fromLTRB(54, 168, 54, 270),
         child: Container (
-          child: Column (
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding (
-              padding: EdgeInsets.fromLTRB(48,32,308,24),
-              child: Text("Top Livros",
-                style: TextStyle (
-                fontWeight: FontWeight.w600,
-                fontSize: 18,
-                fontFamily: 'Poppins'
-              ),
-              ),
-              )
-            ],
+          width: 326,
+          height: 296,
+          decoration: BoxDecoration (
+            image: DecorationImage (
+              image: AssetImage("assets/images/searchimage.png"),
+              alignment: Alignment.center,
+             
+          ),
+          ),
           )
-        )
+      ),
       )
         ],
       ),

@@ -1,5 +1,7 @@
+import 'package:api/data/BD.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart'
+import 'package:flutter_typeahead/flutter_typeahead.dart';
+
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -10,6 +12,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   @override
+
   Widget build(BuildContext context) {
     return Scaffold( 
       body: Column (
@@ -21,10 +24,8 @@ class _SearchPageState extends State<SearchPage> {
         child: SizedBox (
           width: 346,
           height: 56,
-          child: TypeAheadField (
-            suggestionsCallback: ,
-            onSuggestionSelected: ,
-          textFieldConfiguration: TextField (
+          child: TypeAheadField  (
+          textFieldConfiguration: TextFieldConfiguration (
           style: TextStyle(
             color: Color(0XFFBDB8D9)
           ),
@@ -42,6 +43,9 @@ class _SearchPageState extends State<SearchPage> {
           ),
           ),
           ),
+          suggestionsCallback: (pattern) async {
+
+          },
           ),
         ),
       ),

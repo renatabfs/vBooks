@@ -3,7 +3,7 @@ class Livro {
   String titulo;
   String autor;
   String sinopse;
-  double id;
+  int id;
 Livro ({
   required this.imagem,
   required this.titulo,

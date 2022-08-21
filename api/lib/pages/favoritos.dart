@@ -1,7 +1,5 @@
 import 'package:api/widgets/favorito_card.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:api/data/BD.dart';
 import 'package:api/domain/livros.dart';
 

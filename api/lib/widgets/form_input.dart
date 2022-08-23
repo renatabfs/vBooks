@@ -4,21 +4,23 @@ class FormInput extends StatefulWidget {
   final String label;
   final String hint;
   final bool obscure;
-  final Icon suffixIcon;
+  final Icon suffixIcon; 
+  late String inputValue;
 
-  const FormInput(
+  FormInput(
       {Key? key,
       required this.label,
       required this.hint,
       required this.obscure,
-      required this.suffixIcon})
+      required this.suffixIcon,
+      required this.inputValue,
+      })
       : super(key: key);
-
   @override
   State<FormInput> createState() => _FormInputState();
 }
 
-class _FormInputState extends State<FormInput> {
+class _FormInputState extends State<FormInput> {  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,6 +39,22 @@ class _FormInputState extends State<FormInput> {
           height: 4,
         ),
         TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Digite algum texto';
+            }
+            return null;
+          },
+          onSaved: (value) {
+            if (value == null || value.isEmpty) {
+              return null;
+            } else {
+              setState(() {
+                widget.inputValue = value;
+              });
+            }
+            
+          },
           obscureText: widget.obscure,
           keyboardType: TextInputType.visiblePassword,
           autofocus: false,

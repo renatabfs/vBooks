@@ -32,19 +32,22 @@ class _CadastrarState extends State<Cadastrar> {
                   autovalidateMode: AutovalidateMode.always,
                   child: Column(
                     children: [
-                      const FormInput(
+                      FormInput(
+                          inputValue: "",
                           label: "Nome",
                           hint: "Digite seu nome",
                           obscure: false,
                           suffixIcon: Icon(Icons.person_outline,
                               color: Color(0xFFBDB8D9))),
-                      const FormInput(
+                      FormInput(
+                          inputValue: "",
                           label: "E-mail",
                           hint: "example@mail.com",
                           obscure: false,
                           suffixIcon: Icon(Icons.mail_outline_rounded,
                               color: Color(0xFFBDB8D9))),
-                      const FormInput(
+                      FormInput(
+                          inputValue: "",
                           hint: "Senha",
                           label: "Senha",
                           obscure: true,

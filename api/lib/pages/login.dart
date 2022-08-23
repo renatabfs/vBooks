@@ -11,6 +11,22 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final emailInput = FormInput(
+      inputValue: "",
+      label: "E-mail",
+      hint: "example@mail.com",
+      obscure: false,
+      suffixIcon: Icon(Icons.mail_outline_rounded));
+
+  final senhaInput = FormInput(
+      inputValue: "",
+      hint: "Senha",
+      label: "Senha",
+      obscure: true,
+      suffixIcon: Icon(Icons.lock_outline_rounded, color: Color(0xFFBDB8D9)));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,21 +45,11 @@ class _LoginState extends State<Login> {
                 height: (MediaQuery.of(context).size.height) * 0.18,
               ),
               Form(
-                  autovalidateMode: AutovalidateMode.always,
+                  key: _formKey,
                   child: Column(
                     children: [
-                      const FormInput(
-                          label: "E-mail",
-                          hint: "example@mail.com",
-                          obscure: false,
-                          suffixIcon: Icon(Icons.mail_outline_rounded,
-                              color: Color(0xFFBDB8D9))),
-                      const FormInput(
-                          hint: "Senha",
-                          label: "Senha",
-                          obscure: true,
-                          suffixIcon: Icon(Icons.lock_outline_rounded,
-                              color: Color(0xFFBDB8D9))),
+                      emailInput,
+                      senhaInput,
                     ],
                   )),
               Column(
@@ -56,7 +62,12 @@ class _LoginState extends State<Login> {
                     ),
                     child: TextButton(
                         onPressed: () {
-                          
+                          if (!_formKey.currentState!.validate()) {
+                            return;
+                          }
+                          _formKey.currentState!.save();
+                          print(emailInput.inputValue);
+                          print(senhaInput.inputValue);
                         },
                         child: Padding(
                           padding: EdgeInsets.all(10),

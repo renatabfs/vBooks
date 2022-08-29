@@ -1,7 +1,9 @@
+import 'package:api/domain/usuarios.dart';
 import 'package:api/pages/cadastrar.dart';
 import 'package:api/widgets/form_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:api/data/usuariosBD.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  List<Usuario> usuarios = UsuariosBD.listaUsuario;
 
   final emailInput = FormInput(
       inputValue: "",
@@ -66,8 +69,12 @@ class _LoginState extends State<Login> {
                             return;
                           }
                           _formKey.currentState!.save();
-                          print(emailInput.inputValue);
-                          print(senhaInput.inputValue);
+                          for (var i = 0; i < usuarios.length; i++) {
+                            if(usuarios[i].email == emailInput.inputValue && usuarios[i].senha ==senhaInput.inputValue) {
+                              print("Achei!!!");
+                            }
+                          }
+                
                         },
                         child: Padding(
                           padding: EdgeInsets.all(10),

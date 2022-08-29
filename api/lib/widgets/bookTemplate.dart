@@ -1,5 +1,7 @@
 import 'package:api/domain/livros.dart';
+import 'package:api/pages/description.dart';
 import 'package:flutter/material.dart';
+import 'package:api/data/BD.dart';
 
 class BookTemplate extends StatefulWidget {
   final Livro livros;
@@ -14,11 +16,14 @@ class BookTemplate extends StatefulWidget {
 }
 
 class _BookTemplateState extends State<BookTemplate> {
+  List<Livro> lista = BD.listaLivros;
   Livro get livro => widget.livros;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Description(livros: lista[1],)));
+      },
       child: Container(
         height: 120,
         width: 110,

@@ -1,9 +1,7 @@
 import 'package:api/widgets/bookTemplate.dart';
-import 'package:api/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:api/data/BD.dart';
 import 'package:api/domain/livros.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Home_page extends StatefulWidget {
   const Home_page({Key? key}) : super(key: key);

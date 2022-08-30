@@ -1,7 +1,9 @@
+import 'package:api/domain/usuarios.dart';
 import 'package:api/pages/login.dart';
 import 'package:api/widgets/form_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:api/data/usuariosBD.dart';
 
 class Cadastrar extends StatefulWidget {
   const Cadastrar({Key? key}) : super(key: key);
@@ -11,6 +13,30 @@ class Cadastrar extends StatefulWidget {
 }
 
 class _CadastrarState extends State<Cadastrar> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  List<Usuario> usuarios = UsuariosBD.listaUsuario;
+
+  final emailInput = FormInput(
+      inputValue: "",
+      label: "E-mail",
+      hint: "example@mail.com",
+      obscure: false,
+      suffixIcon: Icon(Icons.mail_outline_rounded, color: Color(0xFFBDB8D9)));
+
+  final senhaInput = FormInput(
+      inputValue: "",
+      label: "Senha",
+      hint: "Senha",
+      obscure: true,
+      suffixIcon: Icon(Icons.lock_outline_rounded, color: Color(0xFFBDB8D9)));
+
+  final nomeInput = FormInput(
+      inputValue: "",
+      label: "Nome",
+      hint: "Digite seu nome",
+      obscure: false,
+      suffixIcon: Icon(Icons.person_outline, color: Color(0xFFBDB8D9)));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,32 +55,8 @@ class _CadastrarState extends State<Cadastrar> {
                 height: (MediaQuery.of(context).size.height) * 0.18,
               ),
               Form(
-                  autovalidateMode: AutovalidateMode.always,
-                  child: Column(
-                    children: [
-                      FormInput(
-                          inputValue: "",
-                          label: "Nome",
-                          hint: "Digite seu nome",
-                          obscure: false,
-                          suffixIcon: Icon(Icons.person_outline,
-                              color: Color(0xFFBDB8D9))),
-                      FormInput(
-                          inputValue: "",
-                          label: "E-mail",
-                          hint: "example@mail.com",
-                          obscure: false,
-                          suffixIcon: Icon(Icons.mail_outline_rounded,
-                              color: Color(0xFFBDB8D9))),
-                      FormInput(
-                          inputValue: "",
-                          hint: "Senha",
-                          label: "Senha",
-                          obscure: true,
-                          suffixIcon: Icon(Icons.lock_outline_rounded,
-                              color: Color(0xFFBDB8D9))),
-                    ],
-                  )),
+                  key: _formKey,
+                  child: Column(children: [nomeInput, emailInput, senhaInput])),
               Column(
                 children: [
                   Container(
@@ -64,7 +66,41 @@ class _CadastrarState extends State<Cadastrar> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (!_formKey.currentState!.validate()) {
+                            return;
+                          }
+                          _formKey.currentState!.save();
+
+                          Usuario novoUsuario = new Usuario(
+                            id: usuarios.length,
+                            email: emailInput.inputValue,
+                            senha: senhaInput.inputValue,
+                            nome: nomeInput.inputValue,
+                          );
+
+                          if (usuarios
+                              .any((u) => u.email == novoUsuario.email)) {
+                            print("Erro de cadastro! O usuário já existe!");
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Erro de cadastro!'),
+                                content: const Text('O usuário já existe!'),
+                              ),
+                            );
+                          } else {
+                            usuarios.add(novoUsuario);
+                            UsuariosBD.listaUsuario = usuarios;
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Sucesso'),
+                                content: const Text('Usuário cadastrado com sucesso!'),
+                              ),
+                            );
+                          }
+                        },
                         child: Padding(
                           padding: EdgeInsets.all(10),
                           child: Text(

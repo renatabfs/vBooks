@@ -21,7 +21,7 @@ class _LoginState extends State<Login> {
       label: "E-mail",
       hint: "example@mail.com",
       obscure: false,
-      suffixIcon: Icon(Icons.mail_outline_rounded));
+      suffixIcon: Icon(Icons.mail_outline_rounded, color: Color(0xFFBDB8D9)));
 
   final senhaInput = FormInput(
       inputValue: "",
@@ -69,12 +69,26 @@ class _LoginState extends State<Login> {
                             return;
                           }
                           _formKey.currentState!.save();
-                          for (var i = 0; i < usuarios.length; i++) {
-                            if(usuarios[i].email == emailInput.inputValue && usuarios[i].senha ==senhaInput.inputValue) {
-                              print("Achei!!!");
-                            }
+
+                          if (usuarios.any((u) =>
+                              u.email == emailInput.inputValue &&
+                              u.senha == senhaInput.inputValue)) {
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Sucesso'),
+                                content: const Text('Usuario logado'),
+                              ),
+                            );
+                          } else {
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Falha de login'),
+                                content: const Text('Credenciais incorretas'),
+                              ),
+                            );
                           }
-                
                         },
                         child: Padding(
                           padding: EdgeInsets.all(10),

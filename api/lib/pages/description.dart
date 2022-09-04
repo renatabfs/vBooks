@@ -1,6 +1,6 @@
 import 'package:api/domain/livros.dart';
 import 'package:flutter/material.dart';
-import 'package:api/data/BD.dart';
+import 'package:api/data/livrosBD.dart';
 
 class Description extends StatefulWidget {
   final Livro livros;

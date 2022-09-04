@@ -1,4 +1,5 @@
 import 'package:api/domain/usuarios.dart';
+import 'package:api/pages/home_page.dart';
 import 'package:api/pages/login.dart';
 import 'package:api/widgets/form_input.dart';
 import 'package:flutter/material.dart';
@@ -92,13 +93,11 @@ class _CadastrarState extends State<Cadastrar> {
                           } else {
                             usuarios.add(novoUsuario);
                             UsuariosBD.listaUsuario = usuarios;
-                            showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: const Text('Sucesso'),
-                                content: const Text('Usuário cadastrado com sucesso!'),
-                              ),
-                            );
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return const Home_page();
+                              },
+                            ));
                           }
                         },
                         child: Padding(

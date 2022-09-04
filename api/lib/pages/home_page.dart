@@ -1,6 +1,6 @@
 import 'package:api/widgets/bookTemplate.dart';
 import 'package:flutter/material.dart';
-import 'package:api/data/BD.dart';
+import 'package:api/data/livrosBD.dart';
 import 'package:api/domain/livros.dart';
 
 class Home_page extends StatefulWidget {
@@ -11,7 +11,7 @@ class Home_page extends StatefulWidget {
 }
 
 class _Home_pageState extends State<Home_page> {
-  List<Livro> lista = BD.listaLivros;
+  List<Livro> lista = LivrosBD.listaLivros;
 
   @override
   Widget build(BuildContext context) {

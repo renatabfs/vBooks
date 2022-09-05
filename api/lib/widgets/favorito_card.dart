@@ -19,52 +19,58 @@ class _FavoritosCardState extends State<FavoritosCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {},
-      child: Container (
-        width: 127,
-            child:Column(
-        children: [
-            Padding (
-            padding: EdgeInsets.fromLTRB(24,40,10,10),
-            child: Container(
-              width: 110,
-              height: 151,
-              child: Image.network(
-                livro.imagem,
-                fit: BoxFit.cover,
+      child: Container(
+        height:120,
+        width: 110,
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(15, 40, 15, 10),
+              child: Container(
+                width: 110,
+                height: 120,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    livro.imagem,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
-            ),
-             Padding (
-              padding:EdgeInsets.all(10),
-              child: 
-                Column (
-                  children: [
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: [
                   Text(
-                  textAlign: TextAlign.center,
-                  livro.titulo,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: "Poppins",
-                    color: Color (0x0FF412F59),
+                    textAlign: TextAlign.center,
+                    livro.titulo,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: "Poppins",
+                      color: Color(0x0FF412F59),
+                    ),
                   ),
-                ),
-                Text (
-                  textAlign: TextAlign.center,
-                  livro.autor,
-                  style: const TextStyle (
-                    fontSize:16,
-                    color: Color(0x0FFBDB8D9),
-                    fontWeight: FontWeight.w500,
-                    fontFamily: "Poppins"
-                  ),
-                )
-                  ],
-                ),
-             )
-        ],
+                  Text(
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    livro.autor,
+                    style: const TextStyle(
+                        fontSize: 12,
+                        color: Color(0x0FFBDB8D9),
+                        fontWeight: FontWeight.w500,
+                        fontFamily: "Poppins"),
+                  )
+                ],
+              ),
+            )
+          ],
         ),
       ),
-        );
+    );
   }
 }

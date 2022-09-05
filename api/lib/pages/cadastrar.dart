@@ -1,6 +1,6 @@
 import 'package:api/domain/usuarios.dart';
-import 'package:api/pages/home_page.dart';
 import 'package:api/pages/login.dart';
+import 'package:api/pages/navbar.dart';
 import 'package:api/widgets/form_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -95,7 +95,7 @@ class _CadastrarState extends State<Cadastrar> {
                             UsuariosBD.listaUsuario = usuarios;
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
-                                return const Home_page();
+                                return const Navbar();
                               },
                             ));
                           }

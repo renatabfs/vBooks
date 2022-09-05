@@ -109,7 +109,7 @@ class _Home_pageState extends State<Home_page> {
       itemCount: lista.length,
       itemBuilder: (context, index) {
         return BookTemplate(
-          livros: lista[index],
+          livro: lista[index],
         );
       },
     );

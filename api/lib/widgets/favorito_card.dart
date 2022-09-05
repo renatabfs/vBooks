@@ -1,31 +1,26 @@
 import 'package:api/domain/livros.dart';
-import 'package:api/pages/description.dart';
 import 'package:flutter/material.dart';
-import 'package:api/data/livrosBD.dart';
 
-class BookTemplate extends StatefulWidget {
-  final Livro livro;
+class FavoritosCard extends StatefulWidget {
+  final Livro livros;
 
-  const BookTemplate({
+  const FavoritosCard({
     Key? key,
-    required this.livro,
+    required this.livros,
   }) : super(key: key);
 
   @override
-  State<BookTemplate> createState() => _BookTemplateState();
+  State<FavoritosCard> createState() => _FavoritosCardState();
 }
 
-class _BookTemplateState extends State<BookTemplate> {
-  List<Livro> lista = LivrosBD.listaLivros;
-  Livro get livro => widget.livro;
+class _FavoritosCardState extends State<FavoritosCard> {
+  Livro get livro => widget.livros;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Description(livros: livro,)));
-      },
+      onTap: () {},
       child: Container(
-        height: 120,
+        height:120,
         width: 110,
         child: Column(
           children: [
@@ -52,10 +47,12 @@ class _BookTemplateState extends State<BookTemplate> {
                     livro.titulo,
                     softWrap: true,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: "Poppins",
-                    color: Color(0x0FF412F59),),
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: "Poppins",
+                      color: Color(0x0FF412F59),
+                    ),
                   ),
                   Text(
                     softWrap: true,

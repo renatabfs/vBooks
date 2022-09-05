@@ -8,5 +8,11 @@ class UsuariosBD {
       email: "admin@admin.com",
       senha: "admin123",
     ),
+    Usuario(
+      id: 2,
+      nome: "1",
+      email: "1",
+      senha: "1",
+    ),
   ];
 }

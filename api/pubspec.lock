@@ -62,10 +62,31 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_lints:
-    dependency: "direct dev"
+  flutter_keyboard_visibility:
+    dependency: transitive
     description:
       name: flutter_keyboard_visibility
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.3.0"
+  flutter_keyboard_visibility_platform_interface:
+    dependency: transitive
+    description:
+      name: flutter_keyboard_visibility_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
+  flutter_keyboard_visibility_web:
+    dependency: transitive
+    description:
+      name: flutter_keyboard_visibility_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
+  flutter_svg:
+    dependency: "direct main"
+    description:
+      name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.4"
@@ -74,8 +95,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
-=======
   flutter_typeahead:
     dependency: "direct main"
     description:
@@ -95,7 +114,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
->>>>>>> search
   matcher:
     dependency: transitive
     description:
@@ -124,7 +142,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.1"
-<<<<<<< HEAD
   path_drawing:
     dependency: transitive
     description:
@@ -146,7 +163,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.0"
-=======
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -154,7 +170,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
->>>>>>> search
   sky_engine:
     dependency: transitive
     description: flutter
@@ -218,8 +233,4 @@ packages:
     version: "6.1.0"
 sdks:
   dart: ">=2.17.3 <3.0.0"
-<<<<<<< HEAD
   flutter: ">=2.11.0-0.1.pre"
-=======
-  flutter: ">=1.20.0"
->>>>>>> search

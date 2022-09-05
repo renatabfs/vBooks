@@ -1,4 +1,4 @@
-import 'package:api/widgets/favorito_card.dart';
+import 'package:api/widgets/bookTemplate.dart';
 import 'package:flutter/material.dart';
 import 'package:api/data/livrosBD.dart';
 import 'package:api/domain/livros.dart';
@@ -49,8 +49,8 @@ class _FavoritosState extends State<Favoritos> {
       ),
       itemCount: lista.length,
       itemBuilder: (context, index) {
-        return FavoritosCard(
-          livros: lista[index],
+        return BookTemplate(
+          livro: lista[index],
         );
       },
     );

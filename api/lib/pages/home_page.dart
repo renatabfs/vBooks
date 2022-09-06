@@ -1,7 +1,10 @@
+import 'package:api/controller/user_controller.dart';
+import 'package:api/domain/usuarios.dart';
 import 'package:api/widgets/bookTemplate.dart';
 import 'package:flutter/material.dart';
 import 'package:api/data/livrosBD.dart';
 import 'package:api/domain/livros.dart';
+import 'package:provider/provider.dart';
 
 class Home_page extends StatefulWidget {
   const Home_page({Key? key}) : super(key: key);
@@ -15,6 +18,8 @@ class _Home_pageState extends State<Home_page> {
 
   @override
   Widget build(BuildContext context) {
+    var usuarioProvider = Provider.of<UserController>(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
@@ -58,7 +63,8 @@ class _Home_pageState extends State<Home_page> {
                                         child: Column(
                                           children: [
                                             Text(
-                                              'Olá, Fulano!',
+                                              'Olá, ' +
+                                                  usuarioProvider.usuario.nome,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 fontSize: 20,

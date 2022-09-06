@@ -1,3 +1,4 @@
+import 'package:api/controller/user_controller.dart';
 import 'package:api/domain/usuarios.dart';
 import 'package:api/pages/cadastrar.dart';
 import 'package:api/pages/navbar.dart';
@@ -5,6 +6,7 @@ import 'package:api/widgets/form_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:api/data/usuariosBD.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -33,6 +35,8 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    final usuarioProvider = Provider.of<UserController>(context);
+
     return Scaffold(
         body: SingleChildScrollView(
       child: Padding(
@@ -70,10 +74,12 @@ class _LoginState extends State<Login> {
                             return;
                           }
                           _formKey.currentState!.save();
-
-                          if (usuarios.any((u) =>
+                          var index = usuarios.indexWhere((u) =>
                               u.email == emailInput.inputValue &&
-                              u.senha == senhaInput.inputValue)) {
+                              u.senha == senhaInput.inputValue);
+
+                          if (index >= 0) {
+                            usuarioProvider.setUsuario(usuarios[index]);
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
                                 return const Navbar();

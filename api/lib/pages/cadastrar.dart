@@ -1,3 +1,4 @@
+import 'package:api/controller/user_controller.dart';
 import 'package:api/domain/usuarios.dart';
 import 'package:api/pages/login.dart';
 import 'package:api/pages/navbar.dart';
@@ -5,6 +6,7 @@ import 'package:api/widgets/form_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:api/data/usuariosBD.dart';
+import 'package:provider/provider.dart';
 
 class Cadastrar extends StatefulWidget {
   const Cadastrar({Key? key}) : super(key: key);
@@ -40,6 +42,7 @@ class _CadastrarState extends State<Cadastrar> {
 
   @override
   Widget build(BuildContext context) {
+    final usuarioProvider = Provider.of<UserController>(context);
     return Scaffold(
         body: SingleChildScrollView(
       child: Padding(
@@ -93,6 +96,7 @@ class _CadastrarState extends State<Cadastrar> {
                           } else {
                             usuarios.add(novoUsuario);
                             UsuariosBD.listaUsuario = usuarios;
+                            usuarioProvider.setUsuario(novoUsuario);
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
                                 return const Navbar();

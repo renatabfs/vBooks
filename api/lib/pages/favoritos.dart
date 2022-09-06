@@ -1,6 +1,6 @@
 import 'package:api/widgets/bookTemplate.dart';
 import 'package:flutter/material.dart';
-import 'package:api/data/livrosBD.dart';
+import 'package:api/data/favoritosBD.dart';
 import 'package:api/domain/livros.dart';
 
 class Favoritos extends StatefulWidget {
@@ -11,7 +11,7 @@ class Favoritos extends StatefulWidget {
 }
 
 class _FavoritosState extends State<Favoritos> {
-  List<Livro> lista = LivrosBD.listaLivros;
+  List<Livro> lista = FavoritosBD.listaFavoritos;
 
   @override
   Widget build(BuildContext context) {

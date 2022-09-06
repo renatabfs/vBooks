@@ -1,7 +1,6 @@
 import 'package:api/controller/user_controller.dart';
 import 'package:api/widgets/bookTemplate.dart';
 import 'package:flutter/material.dart';
-import 'package:api/data/favoritosBD.dart';
 import 'package:api/domain/livros.dart';
 import 'package:provider/provider.dart';
 

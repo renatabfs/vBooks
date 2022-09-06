@@ -81,6 +81,7 @@ class _CadastrarState extends State<Cadastrar> {
                             email: emailInput.inputValue,
                             senha: senhaInput.inputValue,
                             nome: nomeInput.inputValue,
+                            favoritos: []
                           );
 
                           if (usuarios

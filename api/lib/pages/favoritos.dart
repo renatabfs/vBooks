@@ -1,7 +1,9 @@
+import 'package:api/controller/user_controller.dart';
 import 'package:api/widgets/bookTemplate.dart';
 import 'package:flutter/material.dart';
 import 'package:api/data/favoritosBD.dart';
 import 'package:api/domain/livros.dart';
+import 'package:provider/provider.dart';
 
 class Favoritos extends StatefulWidget {
   const Favoritos({Key? key}) : super(key: key);
@@ -11,10 +13,12 @@ class Favoritos extends StatefulWidget {
 }
 
 class _FavoritosState extends State<Favoritos> {
-  List<Livro> lista = FavoritosBD.listaFavoritos;
 
   @override
   Widget build(BuildContext context) {
+  final usuarioProvider = Provider.of<UserController>(context);
+  List<Livro> lista = usuarioProvider.usuario.favoritos;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
@@ -32,13 +36,13 @@ class _FavoritosState extends State<Favoritos> {
               ),
             ),
           ),
-          buildListView(),
+          buildListView(lista),
         ],
       ),
     );
   }
 
-  buildListView() {
+  buildListView(lista) {
     return GridView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,

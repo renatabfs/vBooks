@@ -21,7 +21,7 @@ class _Home_pageState extends State<Home_page> {
         children: [
           Center(
             child: Padding(
-                padding: EdgeInsets.only(top: 20),
+                padding: EdgeInsets.only(top: 24, left: 24, right: 24),
                 child: SizedBox(
                     width: double.infinity,
                     height: 250,

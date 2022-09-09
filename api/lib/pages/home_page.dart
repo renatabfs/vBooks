@@ -32,22 +32,25 @@ class _Home_pageState extends State<Home_page> {
                     height: 250,
                     child: Center(
                       child: Stack(
+                        alignment: Alignment.center,
                         children: <Widget>[
-                          Positioned(
-                            left: 15,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: Image.asset(
-                                'assets/images/cover.jpg',
-                                fit: BoxFit.fill,
-                                width: 330,
-                                height: 200,
+                          Positioned.fill(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(16),
+                                child: Image.asset(
+                                  'assets/images/cover.jpg',
+                                  fit: BoxFit.fill,
+                                  width: 330,
+                                  height: 200,
+                                ),
                               ),
                             ),
                           ),
-                          Positioned(
-                            left: 55,
-                            top: 120,
+                          Positioned.fill(
+                              child: Align(
+                            alignment: Alignment.bottomCenter,
                             child: Container(
                                 width: 250,
                                 height: 115,
@@ -92,7 +95,7 @@ class _Home_pageState extends State<Home_page> {
                                     ),
                                   ],
                                 )),
-                          )
+                          )),
                         ],
                       ),
                     ))),

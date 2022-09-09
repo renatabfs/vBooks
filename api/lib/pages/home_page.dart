@@ -1,6 +1,7 @@
 import 'package:api/controller/user_controller.dart';
 import 'package:api/domain/usuarios.dart';
 import 'package:api/widgets/bookTemplate.dart';
+import 'package:api/widgets/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:api/data/livrosBD.dart';
 import 'package:api/domain/livros.dart';
@@ -100,27 +101,12 @@ class _Home_pageState extends State<Home_page> {
                       ),
                     ))),
           ),
-          grid(),
+          SizedBox(
+            height: 32,
+          ),
+          Grid(lista: lista),
         ],
       ),
-    );
-  }
-
-  grid() {
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        childAspectRatio: 0.52,
-        //crossAxisSpacing: 2,
-      ),
-      itemCount: lista.length,
-      itemBuilder: (context, index) {
-        return BookTemplate(
-          livro: lista[index],
-        );
-      },
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:api/data/livrosBD.dart';
 import 'package:api/domain/livros.dart';
 import 'package:api/widgets/bookTemplate.dart';
+import 'package:api/widgets/grid.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
@@ -61,6 +62,9 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 32,
+              ),
               buildListView(resultados),
             ],
           ),
@@ -82,21 +86,7 @@ class _SearchPageState extends State<SearchPage> {
         ),
       );
     } else {
-      return GridView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-          childAspectRatio: 0.52,
-          //crossAxisSpacing: 2,
-        ),
-        itemCount: lista.length,
-        itemBuilder: (context, index) {
-          return BookTemplate(
-            livro: lista[index],
-          );
-        },
-      );
+      return Grid(lista: lista);
     }
   }
 }

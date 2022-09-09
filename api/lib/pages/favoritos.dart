@@ -1,5 +1,6 @@
 import 'package:api/controller/user_controller.dart';
 import 'package:api/widgets/bookTemplate.dart';
+import 'package:api/widgets/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:api/domain/livros.dart';
 import 'package:provider/provider.dart';
@@ -12,18 +13,17 @@ class Favoritos extends StatefulWidget {
 }
 
 class _FavoritosState extends State<Favoritos> {
-
   @override
   Widget build(BuildContext context) {
-  final usuarioProvider = Provider.of<UserController>(context);
-  List<Livro> lista = usuarioProvider.usuario.favoritos;
+    final usuarioProvider = Provider.of<UserController>(context);
+    List<Livro> lista = usuarioProvider.usuario.favoritos;
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
         children: [
           Padding(
-            padding: EdgeInsets.only(top:10),
+            padding: EdgeInsets.only(top: 10),
             child: Text(
               'Meus Favoritos',
               textAlign: TextAlign.center,
@@ -35,27 +35,12 @@ class _FavoritosState extends State<Favoritos> {
               ),
             ),
           ),
-          buildListView(lista),
+          SizedBox(
+            height: 32,
+          ),
+          Grid(lista: lista)
         ],
       ),
-    );
-  }
-
-  buildListView(lista) {
-    return GridView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        childAspectRatio: 0.52,
-        //crossAxisSpacing: 2,
-      ),
-      itemCount: lista.length,
-      itemBuilder: (context, index) {
-        return BookTemplate(
-          livro: lista[index],
-        );
-      },
     );
   }
 }

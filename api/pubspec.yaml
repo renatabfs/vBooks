@@ -66,6 +66,7 @@ flutter:
     - assets/images/registrar_ilustracao.svg
     - assets/images/login_ilustracao.svg
     - assets/images/searchimage.png
+    - assets/images/cover.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

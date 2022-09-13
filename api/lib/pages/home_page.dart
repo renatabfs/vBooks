@@ -41,7 +41,7 @@ class _Home_pageState extends State<Home_page> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(16),
                                 child: Image.asset(
-                                  'assets/images/cover.jpg',
+                                  'assets/images/imagem_home.svg',
                                   fit: BoxFit.fill,
                                   width: 330,
                                   height: 200,

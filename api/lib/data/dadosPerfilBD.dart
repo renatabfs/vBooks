@@ -1,20 +1,20 @@
-import 'package:api/data/livrosBD.dart';
-import 'package:api/domain/usuarios.dart';
+import 'package:api/domain/dadosPerfil.dart';
+import 'package:flutter/material.dart';
 
 class DadosPerfilBD {
-  static List<dados> listaDados = [
-    Dado(
-      nome: "Nome",
-      icon: IconData(0xee34, fontFamily: 'MaterialIcons', Color: (0x0FFBDB8D9));
-
+  static List<DadosPerfil> listaDados = [
+    DadosPerfil(
+      dado: "Nome",
+      icon: Icon(Icons.account_box_outlined, color: Color(0x0FFBDB8D9), size: 32),
     ),
-    Dado(
-      email: "Email",
-      icon: IconData(0xe22a, fontFamily: 'MaterialIcons', Color: (0x0FFBDB8D9));
+    DadosPerfil(
+      dado: "Email",
+      icon: Icon(Icons.email_outlined, color: Color(0x0FFBDB8D9), size: 32),
     ),
-    Dado(
-      novaSenha: "Nova senha",
-      icon: IconData(0xe3ae, fontFamily: 'MaterialIcons', Color: (0x0FFBDB8D9));
+    DadosPerfil(
+      dado: "Nova senha",
+      icon: Icon(Icons.lock_outline_rounded, color: Color(0x0FFBDB8D9), size: 32),
     ),
   ];
 }
+

@@ -70,8 +70,8 @@ class _PerfilState extends State <Perfil>{
       shrinkWrap: true,
       itemCount: lista.length,
       itemBuilder: (context, index) {
-        return DadosPerfil(
-          listaDados: (lista[index].dado),
+        return PerfilTemplate(
+          listaDados: (lista[index].listaDados),
         );
       },
     );

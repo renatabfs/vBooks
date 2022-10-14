@@ -13,7 +13,8 @@ class DadosPerfilBD {
     ),
     DadosPerfil(
       dado: "Nova senha",
-      icon: Icon(Icons.lock_outline_rounded, color: Color(0x0FFBDB8D9), size: 32),
+      icon:
+          Icon(Icons.lock_outline_rounded, color: Color(0x0FFBDB8D9), size: 32),
     ),
   ];
 }

@@ -1,16 +1,11 @@
 class Autores {
-  String nome;
-  String imagem;
-  int id;
+  late final String nome;
+  late final String imagem;
+  late final int id;
 
-Autores ({
-  required this.nome,
-  required this.imagem,
-  required this.id
-  });
-  
-  
-  /*Autores.fromJson(Map<String, dynamic> json) {
+  Autores({required this.nome, required this.imagem, required this.id});
+
+  Autores.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     nome = json['nome'];
     imagem = json['imagem'];
@@ -22,5 +17,5 @@ Autores ({
     data['nome'] = this.nome;
     data['imagem'] = this.imagem;
     return data;
-  }*/
+  }
 }

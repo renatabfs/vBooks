@@ -4,6 +4,8 @@ import 'package:api/data/usuariosBD.dart';
 import 'package:api/domain/usuarios.dart';
 import '../data/dadosPerfilBD.dart';
 import '../pages/perfil.dart';
+import '../controller/user_controller.dart';
+import 'package:provider/provider.dart';
 
 class PerfilTemplate extends StatefulWidget {
   final Perfil perfil;
@@ -26,41 +28,43 @@ class _PerfilTemplateState extends State<PerfilTemplate> {
   //Usuario get usuario => widget.usuario;
   @override
   Widget build(BuildContext context) {
-    //var usuarioProvider = Provider.of<UserController>(context);
+    var usuarioProvider = Provider.of<UserController>(context);
 
     var wigdet;
     return Card(
       child: Column(
-        children:[ 
+        children: [
           Text(
-          widget.perfil.dado,
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            fontFamily: "Poppins",
-            color: Color(0x0FF412F59),
+            "****",
+            //widget.perfil.dado,
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              fontFamily: "Poppins",
+              color: Color(0x0FF412F59),
+            ),
           ),
-        ),
-      Container(
-        decoration: BoxDecoration(
-          border: Border.all(width: 2),
-          color: const Color(0xFFBDB8D9),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Text(
-          wigdet.usuario.Usuario,
-          textAlign: TextAlign.left,
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            fontFamily: "Poppins",
-            color: Color(0x0FFBDB8D9),
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 2),
+              color: const Color(0xFFBDB8D9),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Text(
+              "***",
+              // widget.usuarioProvider,usuario,
+              textAlign: TextAlign.left,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                fontFamily: "Poppins",
+                color: Color(0x0FFBDB8D9),
+              ),
+            ),
           ),
-        ),
+        ],
       ),
-      ],
-    ),
     );
   }
 }

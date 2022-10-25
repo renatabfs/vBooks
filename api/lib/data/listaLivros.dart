@@ -3,7 +3,7 @@ import 'package:api/data/livrosBD.dart';
 import 'package:api/domain/livros.dart';
 import 'package:sqflite/sqlite_api.dart';
 
-class UsuariosDao {
+class LivrosDao {
   Future<List<Livro>> listarLivros() async {
     LivrosBD dbHelper = LivrosBD();
     Database db = await dbHelper.initDB();

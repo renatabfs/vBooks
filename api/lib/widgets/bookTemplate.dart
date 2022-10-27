@@ -1,7 +1,8 @@
 import 'package:api/domain/livros.dart';
 import 'package:api/pages/description.dart';
 import 'package:flutter/material.dart';
-import 'package:api/data/livrosBD.dart';
+
+import '../data/listaLivros.dart';
 
 class BookTemplate extends StatefulWidget {
   final Livro livro;
@@ -16,7 +17,7 @@ class BookTemplate extends StatefulWidget {
 }
 
 class _BookTemplateState extends State<BookTemplate> {
-  List<Livro> lista = LivrosBD.listaLivros;
+  Future<List<Livro>> futureLista = LivrosDao().listarLivros();
   Livro get livro => widget.livro;
   @override
   Widget build(BuildContext context) {

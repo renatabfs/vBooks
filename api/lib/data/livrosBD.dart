@@ -1,6 +1,29 @@
 import 'package:api/domain/livros.dart';
+import 'package:sqflite/sqflite.dart';
+
+import 'db.dart';
 
 class LivrosBD {
+  late Database db;
+
+  Future<void> initDB() async {
+    db = await DBHelper().initDB();
+  }
+
+  Future<List<Livro>> getLivros() async {
+    await initDB();
+    String sql = 'SELECT * FROM LIVROS';
+    var result = await db.rawQuery(sql);
+
+    List<Livro> lista = <Livro>[];
+    for (var json in result) {
+      Livro livro = Livro.fromJson(json);
+      lista.add(livro);
+    }
+
+    return lista;
+  }
+  /*
   static List<Livro> listaLivros = [
     Livro(
       imagem:
@@ -138,5 +161,5 @@ class LivrosBD {
         sinopse:
             "Bem-vindo ao ensino de JavaScript & jQuery. Você é iniciante em JavaScript, ou adicionou scripts a sua página web mas quer entender melhor como tudo funciona? Então este livro é para você. Não mostraremos apenas como ler e escrever em JavaScript, mas também ensinaremos o básico sobre programação de computadores de forma simples e visual. Tudo o que você precisa é entender um pouco sobre HTML e CSS. Este livro ensinará como tornar seus websites mais interativos, atraentes, e funcionais. Isso acontece ao combinar teoria de programação com exemplos que demonstram como o JavaScript e o jQuery são usados em sites populares. De forma rápida, você será capaz de pensar e programar como um profissional.APRENDA COMO:•Ler e escrever em JavaScript Tornar seus sites mais interativos;•Usar jQuery para simplificar seu código;•Recriar técnicas populares da web.TÉCNICAS INCLUSAS:•Apresentações de slides e janelas modais;•Aprimoramento de formulários e validações;•Como usar Ajax, APIs, e JSON;•Filtros, pesquisa e ordenação.",
         id: 17),
-  ];
+  ];*/
 }

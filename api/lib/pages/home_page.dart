@@ -15,7 +15,7 @@ class Home_page extends StatefulWidget {
 }
 
 class _Home_pageState extends State<Home_page> {
-  List<Livro> lista = LivrosBD.listaLivros;
+  List<Livro> lista = [];
 
   @override
   Widget build(BuildContext context) {

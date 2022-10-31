@@ -16,7 +16,7 @@ class BookTemplate extends StatefulWidget {
 }
 
 class _BookTemplateState extends State<BookTemplate> {
-  List<Livro> lista = LivrosBD.listaLivros;
+  List<Livro> lista = [];
   Livro get livro => widget.livro;
   @override
   Widget build(BuildContext context) {

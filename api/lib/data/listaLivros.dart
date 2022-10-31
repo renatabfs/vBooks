@@ -1,12 +1,11 @@
 //import 'dart:convert';
-import 'package:api/data/livrosBD.dart';
+import 'package:api/data/db.dart';
 import 'package:api/domain/livros.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class LivrosDao {
   Future<List<Livro>> listarLivros() async {
-    LivrosBD dbHelper = LivrosBD();
-    Database db = await dbHelper.initDB();
+    Database db = await DBHelper().initDB();
 
     String sql = 'SELECT * FROM livro';
     var result = await db.rawQuery(sql);

@@ -14,7 +14,7 @@ class Home_page extends StatefulWidget {
 }
 
 class _Home_pageState extends State<Home_page> {
-  Future<List<Livro>> futureLista = LivrosDao().listarLivros();
+  List<Livro> lista = [];
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +103,7 @@ class _Home_pageState extends State<Home_page> {
           SizedBox(
             height: 32,
           ),
-          Grid(futureLista: futureLista),
+          Grid(lista: lista),
         ],
       ),
     );

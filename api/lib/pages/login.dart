@@ -17,7 +17,6 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  List<Usuario> usuarios = UsuariosBD.listaUsuario;
 
   final emailInput = FormInput(
       inputValue: "",
@@ -69,23 +68,24 @@ class _LoginState extends State<Login> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (!_formKey.currentState!.validate()) {
                             return;
                           }
                           _formKey.currentState!.save();
-                          var index = usuarios.indexWhere((u) =>
-                              u.email == emailInput.inputValue &&
-                              u.senha == senhaInput.inputValue);
+                          var usuario = await logar(
+                              emailInput.inputValue, senhaInput.inputValue);
 
-                          if (index >= 0) {
-                            usuarioProvider.setUsuario(usuarios[index]);
+                          if (usuario != null) {
+                            print(usuario);
+                            usuarioProvider.setUsuario(usuario);
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
                                 return const Navbar();
                               },
                             ));
                           } else {
+                            print("falhou o login");
                             showDialog<String>(
                               context: context,
                               builder: (BuildContext context) => AlertDialog(
@@ -153,4 +153,15 @@ class _LoginState extends State<Login> {
       ),
     ));
   }
+}
+
+logar(String email, String senha) async {
+  List<Usuario> usuarios = await UsuariosBD().getUsuarios();
+  for (var usuario in usuarios) {
+    if (usuario.email == email && usuario.senha == senha) {
+      print("Achou: " + usuario.nome);
+      return usuario;
+    }
+  }
+  return null;
 }

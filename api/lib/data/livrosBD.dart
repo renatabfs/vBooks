@@ -1,10 +1,30 @@
-//import 'package:api/domain/livros.dart';
+import 'package:api/domain/livros.dart';
 import 'package:sqflite/sqflite.dart';
-import 'dart:async';
-import 'package:path/path.dart';
+
+import 'db.dart';
 
 class LivrosBD {
-  /*static List<Livro> listaLivros = [
+  late Database db;
+
+  Future<void> initDB() async {
+    db = await DBHelper().initDB();
+  }
+
+  Future<List<Livro>> getLivros() async {
+    await initDB();
+    String sql = 'SELECT * FROM LIVROS';
+    var result = await db.rawQuery(sql);
+
+    List<Livro> lista = <Livro>[];
+    for (var json in result) {
+      Livro livro = Livro.fromJson(json);
+      lista.add(livro);
+    }
+
+    return lista;
+  }
+  /*
+  static List<Livro> listaLivros = [
     Livro(
       imagem:
           "https://images-na.ssl-images-amazon.com/images/I/91z1xY4ppaL.jpg",
@@ -142,27 +162,4 @@ class LivrosBD {
             "Bem-vindo ao ensino de JavaScript & jQuery. Você é iniciante em JavaScript, ou adicionou scripts a sua página web mas quer entender melhor como tudo funciona? Então este livro é para você. Não mostraremos apenas como ler e escrever em JavaScript, mas também ensinaremos o básico sobre programação de computadores de forma simples e visual. Tudo o que você precisa é entender um pouco sobre HTML e CSS. Este livro ensinará como tornar seus websites mais interativos, atraentes, e funcionais. Isso acontece ao combinar teoria de programação com exemplos que demonstram como o JavaScript e o jQuery são usados em sites populares. De forma rápida, você será capaz de pensar e programar como um profissional.APRENDA COMO:•Ler e escrever em JavaScript Tornar seus sites mais interativos;•Usar jQuery para simplificar seu código;•Recriar técnicas populares da web.TÉCNICAS INCLUSAS:•Apresentações de slides e janelas modais;•Aprimoramento de formulários e validações;•Como usar Ajax, APIs, e JSON;•Filtros, pesquisa e ordenação.",
         id: 17),
   ];*/
-
-  Future<Database> initDB() async {
-    String path = await getDatabasesPath();
-    String databasePath = join(path, "livros.db");
-    Database db = await openDatabase(
-      databasePath,
-      version: 1,
-      onCreate: onCreate,
-    );
-
-    print(databasePath);
-    return db;
-  }
-
-  Future<FutureOr<void>> onCreate(Database db, int version) async {
-    String sql =
-        'create table LIVRO (id INTEGER PRIMARY KEY, titulo varchar(100), autor varchar(100), imagem varchar(100), sinopse varchar(500));';
-    await db.execute(sql);
-
-    sql =
-        "INSERT INTO LIVRO (id, titulo, autor, imagem, sinopse) VALUES (1, 'JavaScript - O guia definitivo', 'David Flanagan', 'https://images-na.ssl-images-amazon.com/images/I/91z1xY4ppaL.jpg', 'Referência completa para programadores, JavaScript: O guia definitivo fornece uma ampla descrição da linguagem JavaScript básica e das APIs JavaScript do lado do cliente definidas pelos navegadores Web. Em sua 6ª edição, cuidadosamente reescrita para estar de acordo com as melhores práticas de desenvolvimento Web atuais, abrange ECMAScript 5 e HTML5 e traz novos capítulos que documentam jQuery e JavaScript do lado do servidor. Recomendado para programadores experientes que desejam aprender a linguagem de programação da Web e para programadores JavaScript que desejam ampliar seus conhecimentos e dominar a linguagem, este é o guia do programador e manual de referência de JavaScript completo e definitivo.');";
-    await db.execute(sql);
-  }
 }

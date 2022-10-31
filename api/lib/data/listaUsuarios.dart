@@ -1,13 +1,12 @@
 import 'dart:convert';
 
-import 'package:api/data/usuariosBD.dart';
+import 'package:api/data/db.dart';
 import 'package:api/domain/usuarios.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 class UsuariosDao {
   Future<List<Usuario>> listarUsuarios() async {
-    UsuariosBD dbHelper = UsuariosBD();
-    Database db = await dbHelper.initDB();
+    Database db = await DBHelper().initDB();
 
     String sql = 'SELECT * FROM usuario';
     var result = await db.rawQuery(sql);

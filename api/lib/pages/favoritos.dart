@@ -16,7 +16,7 @@ class _FavoritosState extends State<Favoritos> {
   @override
   Widget build(BuildContext context) {
     final usuarioProvider = Provider.of<UserController>(context);
-    List<Livro> lista = usuarioProvider.usuario.favoritos!;
+    List<Livro> lista = [];
 
     return Scaffold(
       backgroundColor: Colors.white,

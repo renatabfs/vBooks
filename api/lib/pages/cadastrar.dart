@@ -17,7 +17,6 @@ class Cadastrar extends StatefulWidget {
 
 class _CadastrarState extends State<Cadastrar> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  List<Usuario> usuarios = UsuariosBD.listaUsuario;
 
   final emailInput = FormInput(
       inputValue: "",
@@ -70,40 +69,46 @@ class _CadastrarState extends State<Cadastrar> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (!_formKey.currentState!.validate()) {
                             return;
                           }
                           _formKey.currentState!.save();
 
-                          Usuario novoUsuario = new Usuario(
-                            id: usuarios.length,
-                            email: emailInput.inputValue,
-                            senha: senhaInput.inputValue,
-                            nome: nomeInput.inputValue,
-                            favoritos: []
-                          );
+                          List<Usuario> usuarios =
+                              await UsuariosBD().getUsuarios();
 
-                          if (usuarios
-                              .any((u) => u.email == novoUsuario.email)) {
-                            print("Erro de cadastro! O usuário já existe!");
-                            showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: const Text('Erro de cadastro!'),
-                                content: const Text('O usuário já existe!'),
-                              ),
-                            );
-                          } else {
-                            usuarios.add(novoUsuario);
-                            UsuariosBD.listaUsuario = usuarios;
-                            usuarioProvider.setUsuario(novoUsuario);
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return const Navbar();
-                              },
-                            ));
+                          for (var usuario in usuarios) {
+                            if (usuario.email == emailInput.inputValue) {
+                              print("Erro de cadastro! O usuário já existe!");
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Erro de cadastro!'),
+                                  content: const Text('O usuário já existe!'),
+                                ),
+                              );
+                              return;
+                            }
                           }
+
+                          Usuario usuario = Usuario(
+                              id: usuarios.length + 1,
+                              nome: nomeInput.inputValue,
+                              email: emailInput.inputValue,
+                              senha: senhaInput.inputValue);
+
+                          await UsuariosBD().insertUsuario(usuario);
+
+                          usuarioProvider.setUsuario(usuario);
+
+                          // Navivagate replace to navbar
+
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return const Navbar();
+                            },
+                          ));
                         },
                         child: Padding(
                           padding: EdgeInsets.all(10),

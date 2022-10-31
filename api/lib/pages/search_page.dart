@@ -13,7 +13,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  List<Livro> listaTotal = LivrosBD.listaLivros;
+  List<Livro> listaTotal = [];
   List<Livro> resultados = [];
   @override
   Widget build(BuildContext context) {

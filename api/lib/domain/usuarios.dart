@@ -5,7 +5,6 @@ class Usuario {
   late final String nome;
   late final String email;
   late final String senha;
-  List<Livro> favoritos = [];
 
   Usuario({
     required this.id,

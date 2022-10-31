@@ -1,28 +1,33 @@
-import 'dart:async';
-import 'package:path/path.dart';
+import 'package:api/data/db.dart';
+import 'package:api/domain/usuarios.dart';
 import 'package:sqflite/sqflite.dart';
 
 class UsuariosBD {
-  Future<Database> initDB() async {
-    String path = await getDatabasesPath();
-    String databasePath = join(path, "usuarios.db");
-    Database db = await openDatabase(
-      databasePath,
-      version: 1,
-      onCreate: onCreate,
-    );
+  late Database db;
 
-    print(databasePath);
-    return db;
+  Future<void> initDB() async {
+    db = await DBHelper().initDB();
   }
 
-  Future<FutureOr<void>> onCreate(Database db, int version) async {
-    String sql =
-        'create table USUARIO (id INTEGER PRIMARY KEY, nome varchar(100), email varchar(100), senha varchar(100));';
-    await db.execute(sql);
+  Future<List<Usuario>> getUsuarios() async {
+    await initDB();
+    String sql = 'SELECT * FROM USUARIO';
+    var result = await db.rawQuery(sql);
 
-    sql =
-        "INSERT INTO USUARIO (id, nome, email, senha) VALUES (1, 'admin', 'admin@admin.com', 'admin123');";
-    await db.execute(sql);
+    List<Usuario> lista = <Usuario>[];
+    for (var json in result) {
+      Usuario usuario = Usuario.fromJson(json);
+      lista.add(usuario);
+    }
+
+    return lista;
+  }
+
+  Future<void> insertUsuario(Usuario usuario) async {
+    await initDB();
+    await db.insert(
+      'USUARIO',
+      usuario.toJson(),
+    );
   }
 }

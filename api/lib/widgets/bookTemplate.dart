@@ -17,7 +17,7 @@ class BookTemplate extends StatefulWidget {
 }
 
 class _BookTemplateState extends State<BookTemplate> {
-  Future<List<Livro>> futureLista = LivrosDao().listarLivros();
+  List<Livro> lista = [];
   Livro get livro => widget.livro;
   @override
   Widget build(BuildContext context) {

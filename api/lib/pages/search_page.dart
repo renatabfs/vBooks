@@ -1,6 +1,5 @@
 import 'package:api/data/livrosBD.dart';
 import 'package:api/domain/livros.dart';
-import 'package:api/widgets/bookTemplate.dart';
 import 'package:api/widgets/grid.dart';
 import 'package:flutter/material.dart';
 
@@ -77,7 +76,7 @@ class _SearchPageState extends State<SearchPage> {
               ),
             );
           }
-          ;
+          return const Center(child: CircularProgressIndicator());
         },
       ),
     );

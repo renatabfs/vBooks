@@ -1,10 +1,9 @@
 import 'package:api/controller/user_controller.dart';
 import 'package:api/widgets/grid.dart';
 import 'package:flutter/material.dart';
+import 'package:api/data/livrosBD.dart';
 import 'package:api/domain/livros.dart';
 import 'package:provider/provider.dart';
-
-import '../data/listaLivros.dart';
 
 class Home_page extends StatefulWidget {
   const Home_page({Key? key}) : super(key: key);
@@ -14,7 +13,7 @@ class Home_page extends StatefulWidget {
 }
 
 class _Home_pageState extends State<Home_page> {
-  List<Livro> lista = [];
+  Future<List<Livro>> futureLista = LivrosBD().getLivros();
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +66,7 @@ class _Home_pageState extends State<Home_page> {
                                           children: [
                                             Text(
                                               'Olá, ' +
-                                                  usuarioProvider.usuario.nome!,
+                                                  usuarioProvider.usuario.nome,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 fontSize: 20,
@@ -103,7 +102,7 @@ class _Home_pageState extends State<Home_page> {
           SizedBox(
             height: 32,
           ),
-          Grid(lista: lista),
+          Grid(futureLista: futureLista),
         ],
       ),
     );

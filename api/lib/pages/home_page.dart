@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:api/data/livrosBD.dart';
 import 'package:api/domain/livros.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Home_page extends StatefulWidget {
   const Home_page({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class _Home_pageState extends State<Home_page> {
                               alignment: Alignment.center,
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(16),
-                                child: Image.asset(
+                                child: SvgPicture.asset(
                                   'assets/images/imagem_home.svg',
                                   fit: BoxFit.fill,
                                   width: 330,

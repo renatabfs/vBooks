@@ -1,5 +1,3 @@
-import 'package:api/domain/livros.dart';
-
 class Usuario {
   late final int id;
   late final String nome;

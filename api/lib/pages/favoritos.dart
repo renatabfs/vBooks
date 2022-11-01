@@ -1,4 +1,5 @@
 import 'package:api/controller/user_controller.dart';
+import 'package:api/data/livrosBD.dart';
 import 'package:api/widgets/bookTemplate.dart';
 import 'package:api/widgets/grid.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class _FavoritosState extends State<Favoritos> {
           SizedBox(
             height: 32,
           ),
-          Grid(lista: lista)
+          Grid(futureLista: futureLista)
         ],
       ),
     );

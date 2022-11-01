@@ -59,4 +59,13 @@ class DBHelper {
           'https://images-na.ssl-images-amazon.com/images/I/51ljjwmnAhL._SX352_BO1,204,203,200_.jpg',
     });
   }
+
+
+  //  Delete sqflite database
+  Future<void> deleteDB() async {
+    String path = await getDatabasesPath();
+    String databasePath = join(path, "vbooks.db");
+    await deleteDatabase(databasePath);
+  }
+
 }

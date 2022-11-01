@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class FormInput extends StatefulWidget {
   final String label;
   final String hint;
   final bool obscure;
-  final Icon suffixIcon; 
+  final Icon suffixIcon;
   late String inputValue;
 
-  FormInput(
-      {Key? key,
-      required this.label,
-      required this.hint,
-      required this.obscure,
-      required this.suffixIcon,
-      required this.inputValue,
-      })
-      : super(key: key);
+  FormInput({
+    Key? key,
+    required this.label,
+    required this.hint,
+    required this.obscure,
+    required this.suffixIcon,
+    required this.inputValue,
+  }) : super(key: key);
   @override
   State<FormInput> createState() => _FormInputState();
 }
 
-class _FormInputState extends State<FormInput> {  
+class _FormInputState extends State<FormInput> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -53,7 +53,6 @@ class _FormInputState extends State<FormInput> {
                 widget.inputValue = value;
               });
             }
-            
           },
           obscureText: widget.obscure,
           keyboardType: TextInputType.visiblePassword,

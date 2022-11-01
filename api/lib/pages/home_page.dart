@@ -65,7 +65,7 @@ class _Home_pageState extends State<Home_page> {
                                           children: [
                                             Text(
                                               'Olá, ' +
-                                                  usuarioProvider.usuario.nome!,
+                                                  usuarioProvider.usuario.nome,
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 fontSize: 20,

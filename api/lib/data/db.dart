@@ -31,11 +31,11 @@ class DBHelper {
     });
 
     String _books = '''CREATE TABLE LIVROS (
-      id INTEREGER PRIMARY KEY,
-      sinopse varchar (200),
-      autor varchar (100),
-      titulo varchar (100),
-      imagem varchar (100));
+      id INTEGER PRIMARY KEY,
+      sinopse varchar(200),
+      autor varchar(100),
+      titulo varchar(100),
+      imagem varchar(100));
       ''';
     await db.execute(_books);
 

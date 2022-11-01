@@ -2,8 +2,6 @@ import 'package:api/domain/livros.dart';
 import 'package:api/pages/description.dart';
 import 'package:flutter/material.dart';
 
-import '../data/listaLivros.dart';
-
 class BookTemplate extends StatefulWidget {
   final Livro livro;
 

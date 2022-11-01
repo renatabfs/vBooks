@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:api/domain/livros.dart';
 import 'package:provider/provider.dart';
 
-import '../data/listaLivros.dart';
-
 class Home_page extends StatefulWidget {
   const Home_page({Key? key}) : super(key: key);
 

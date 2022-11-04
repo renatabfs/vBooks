@@ -1,6 +1,6 @@
 import 'package:api/data/livrosBD.dart';
 import 'package:api/domain/livros.dart';
-import 'package:api/widgets/grid.dart';
+import 'package:api/widgets/bookTemplate.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
@@ -12,90 +12,78 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Future<List<Livro>> listaTotal = LivrosBD().getLivros();
-  List<Livro> resultados = [];
+  String keyword = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<Livro>>(
-        future: listaTotal,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List<Livro> listaTotal = snapshot.data ?? [];
-            return SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(24, 40, 24, 40),
-                child: Column(
-                  children: [
-                    Form(
-                      key: _formKey,
-                      autovalidateMode: AutovalidateMode.always,
-                      child: TextFormField(
-                        onChanged: (value) {
-                          resultados.clear();
-                          List<Livro> onChangedList = [];
-                          if (value != null &&
-                              value.length > 0 &&
-                              value != "") {
-                            for (var i = 0; i < snapshot.data!.length; i++) {
-                              if (listaTotal[i]
-                                  .titulo
-                                  .toLowerCase()
-                                  .contains(value.toLowerCase())) {
-                                onChangedList.add(listaTotal[i]);
-                              }
-                            }
-                          }
-                          setState(() {
-                            resultados = onChangedList;
-                          });
-                        },
-                        style: TextStyle(color: Color(0XFFBDB8D9)),
-                        decoration: InputDecoration(
-                          labelText: "Pesquisar livro",
-                          filled: true,
-                          fillColor: Color(0xFFEEEEEE),
-                          prefixIcon: Icon(Icons.search),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 0,
-                              color: Colors.red,
-                              style: BorderStyle.none,
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(24, 40, 24, 40),
+          child: Column(
+            children: [
+              Form(
+                key: _formKey,
+                autovalidateMode: AutovalidateMode.always,
+                child: TextFormField(
+                  onChanged: (value) {
+                    if (value != null && value.length > 0 && value != "") {
+                      setState(() {
+                        keyword = value;
+                      });
+                    }
+                  },
+                  style: TextStyle(color: Color(0XFFBDB8D9)),
+                  decoration: InputDecoration(
+                    labelText: "Pesquisar livro",
+                    filled: true,
+                    fillColor: Color(0xFFEEEEEE),
+                    prefixIcon: Icon(Icons.search),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 0,
+                        color: Colors.red,
+                        style: BorderStyle.none,
                       ),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    SizedBox(
-                      height: 32,
-                    ),
-                    buildListView(resultados),
-                  ],
+                  ),
                 ),
               ),
-            );
-          }
-          return const Center(child: CircularProgressIndicator());
-        },
+              SizedBox(
+                height: 32,
+              ),
+              buildListView(keyword),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
 
-buildListView(lista) {
-  if (lista.length == 0) {
-    return Container(
-      height: 200,
-      margin: EdgeInsets.only(top: 150),
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/searchimage.png"),
-          fit: BoxFit.contain,
-        ),
-      ),
+buildListView(String value) {
+  if (value != null && value.length > 0 && value != "") {
+    Future<List<Livro>> listaTotal = LivrosBD().getSearchedBook(value);
+    return FutureBuilder<List<Livro>>(
+      future: listaTotal,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          List<Livro> futureLista = snapshot.data ?? [];
+          return GridView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3, mainAxisSpacing: 50, childAspectRatio: 0.6),
+            itemCount: futureLista.length,
+            itemBuilder: (context, index) {
+              return BookTemplate(
+                livro: futureLista[index],
+              );
+            },
+          );
+        }
+        return const Center(child: CircularProgressIndicator());
+      },
     );
-  } else {
-    return Grid(futureLista: lista);
   }
 }

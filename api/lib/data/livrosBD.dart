@@ -24,10 +24,11 @@ class LivrosBD {
     return lista;
   }
 
- Future<List<Livro>> getSearchedBook(String keyword) async {
+  Future<List<Livro>> getSearchedBook(String keyword) async {
     String sql = 'SELECT * FROM LIVROS WHERE titulo LIKE "%$keyword%"';
+    await initDB();
     var result = await db.rawQuery(sql);
-
+    print("Pesquisou o livro: $keyword");
     List<Livro> lista = <Livro>[];
     for (var json in result) {
       Livro livro = Livro.fromJson(json);
@@ -36,7 +37,6 @@ class LivrosBD {
 
     return lista;
   }
-
 
   /*
   static List<Livro> listaLivros = [

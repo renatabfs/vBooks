@@ -30,6 +30,10 @@ class _SearchPageState extends State<SearchPage> {
                       setState(() {
                         keyword = value;
                       });
+                    } else {
+                      setState(() {
+                        keyword = '';
+                      });
                     }
                   },
                   style: TextStyle(color: Color(0XFFBDB8D9)),
@@ -63,6 +67,7 @@ class _SearchPageState extends State<SearchPage> {
 
 buildListView(String value) {
   if (value != null && value.length > 0 && value != "") {
+    print("Tem conteúdo sim");
     Future<List<Livro>> listaTotal = LivrosBD().getSearchedBook(value);
     return FutureBuilder<List<Livro>>(
       future: listaTotal,
@@ -86,4 +91,15 @@ buildListView(String value) {
       },
     );
   }
+  print("Não tem conteúdo");
+  return Container(
+    height: 200,
+    margin: EdgeInsets.only(top: 150),
+    decoration: BoxDecoration(
+      image: DecorationImage(
+        image: AssetImage("assets/images/searchimage.png"),
+        fit: BoxFit.contain,
+      ),
+    ),
+  );
 }

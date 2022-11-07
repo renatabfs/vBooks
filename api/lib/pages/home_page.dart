@@ -89,25 +89,6 @@ class _Home_pageState extends State<Home_page> {
                                                 color: Color(0x0FF9F8FBF),
                                               ),
                                             ),
-                                             ClipRRect(
-              borderRadius: BorderRadius.circular(26.0),
-              child: Row(
-                children: [
-                  TextButton(
-                      style:
-                          TextButton.styleFrom(backgroundColor: Colors.amber),
-                      onPressed: (() {}),
-                      child: Text('favorite!')),
-                  TextButton(
-                      style: TextButton.styleFrom(
-                          backgroundColor: Color(0x0FF412F59)),
-                      onPressed: (() {}),
-                      child: Text(
-                        'leia aqui!',
-                        style: TextStyle(color: Colors.white),
-                      ))
-                ],
-              )),
                                           ],
                                         ),
                                       ),

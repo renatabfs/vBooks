@@ -56,7 +56,61 @@ class _DescriptionState extends State<Description> {
                 color: Color(0x0FF412F59),
               ),
             ),
-          )
+          ),
+          SingleChildScrollView(
+              child: Row(children: [
+            Align(
+                alignment: Alignment.center,
+                child: Container(
+                    child: Center(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Row(children: [
+                      Padding(
+                          padding:
+                              EdgeInsets.only(bottom: 22, left: 32, right: 30),
+                          child: SizedBox(
+                              height: 64,
+                              width: 64,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    backgroundColor: Color(0x0FFF2F2F2)),
+                                child: Icon(
+                                  Icons.bookmark_rounded,
+                                  color: Color(0x0FFF2D399),
+                                  size: 35,
+                                ),
+                              ))),
+                      Padding(
+                          padding: EdgeInsets.only(bottom: 22),
+                          child: SizedBox(
+                              width: 276,
+                              height: 64,
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0)),
+                                      backgroundColor: Color(0x0FF412F59)),
+                                  onPressed: (() {}),
+                                  child: Text(
+                                    'Leia aqui!',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ))))
+                    ]),
+                  ),
+                )))
+          ])),
         ],
       ),
     );

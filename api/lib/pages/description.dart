@@ -19,39 +19,58 @@ class _DescriptionState extends State<Description> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+    double imageSize = width * 0.6;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
         children: [
           Container(
-            width: 100,
-            height: 300,
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(118, 30, 118, 30),
-              child: Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 15,
-                      color: Color(0X0FFBDB8D9),
-                      offset: Offset(-15, -15),
-                    ),
-                    BoxShadow(
-                      spreadRadius: -14.0,
-                      blurRadius: 15.0,
-                    ),
-                  ],
-                ),
-                width: 10,
-                height: 10,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.network(
-                    livro.imagem,
-                    fit: BoxFit.cover,
+            width: width,
+            height: height * 0.55,
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    onPressed: (() {
+                      Navigator.pop(context);
+                    }),
+                    icon: Icon(Icons.chevron_left),
+                    iconSize: 50,
                   ),
                 ),
-              ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(118, 30, 118, 30),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 15,
+                          color: Color(0X0FFBDB8D9),
+                          offset: Offset(-15, -15),
+                        ),
+                        BoxShadow(
+                          spreadRadius: -14.0,
+                          blurRadius: 15.0,
+                        ),
+                      ],
+                    ),
+                    width: imageSize,
+                    height: imageSize,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.network(
+                        livro.imagem,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Padding(

@@ -66,7 +66,7 @@ class _Home_pageState extends State<Home_page> {
                                         child: Column(
                                           children: [
                                             Text(
-                                              'Olá, ${usuarioProvider.usuario.id}',
+                                              'Olá, ${usuarioProvider.usuario.nome}',
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                 fontSize: 20,

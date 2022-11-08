@@ -1,12 +1,10 @@
 import 'package:api/controller/user_controller.dart';
-import 'package:api/data/livrosBD.dart';
+import 'package:api/data/favoritosBD.dart';
 import 'package:api/widgets/bookTemplate.dart';
 import 'package:api/widgets/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:api/domain/livros.dart';
 import 'package:provider/provider.dart';
-
-import '../data/livrosBD.dart';
 
 class Favoritos extends StatefulWidget {
   const Favoritos({Key? key}) : super(key: key);
@@ -19,7 +17,8 @@ class _FavoritosState extends State<Favoritos> {
   @override
   Widget build(BuildContext context) {
     final usuarioProvider = Provider.of<UserController>(context);
-    Future<List<Livro>> futureLista = LivrosBD().getLivros();
+    Future<List<Livro>> futureLista =
+        FavoritosBD().getFavoritos(usuarioProvider.usuario.id);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -41,9 +40,35 @@ class _FavoritosState extends State<Favoritos> {
           SizedBox(
             height: 32,
           ),
-          Grid(futureLista: futureLista)
+          buldiFutureView(futureLista)
         ],
       ),
     );
   }
+}
+
+buldiFutureView(futureLista) {
+  return FutureBuilder<List<Livro>>(
+    future: futureLista,
+    builder: (context, snapshot) {
+      if (snapshot.hasData) {
+        List<Livro> futureLista = snapshot.data ?? [];
+
+        return GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3, mainAxisSpacing: 50, childAspectRatio: 0.6),
+          itemCount: snapshot.data?.length,
+          itemBuilder: (context, index) {
+            return BookTemplate(
+              livro: snapshot.data![index],
+            );
+          },
+        );
+      }
+
+      return const Center(child: CircularProgressIndicator());
+    },
+  );
 }

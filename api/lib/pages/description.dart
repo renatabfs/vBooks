@@ -1,6 +1,9 @@
+import 'package:api/controller/user_controller.dart';
+import 'package:api/data/favoritosBD.dart';
 import 'package:api/domain/livros.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
+import 'package:provider/provider.dart';
 
 class Description extends StatefulWidget {
   final Livro livros;
@@ -19,6 +22,7 @@ class _DescriptionState extends State<Description> {
 
   @override
   Widget build(BuildContext context) {
+    var usuarioProvider = Provider.of<UserController>(context).usuario;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
@@ -134,12 +138,15 @@ class _DescriptionState extends State<Description> {
                 height: 64,
                 width: 64,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await FavoritosBD().insertFavorito(usuarioProvider.id, livro.id) ;
+                  },
                   style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      backgroundColor: Color(0x0FFF2F2F2)),
+                    elevation: 0,
+                    primary: Color(0x0FF412F59),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                  ),
                   child: Icon(
                     Icons.bookmark_rounded,
                     color: Color(0x0FFF2D399),
@@ -153,10 +160,11 @@ class _DescriptionState extends State<Description> {
                 height: 64,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        backgroundColor: Color(0x0FF412F59)),
+                      elevation: 0,
+                      primary: Color(0x0FF412F59),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                    ),
                     onPressed: (() {}),
                     child: Text(
                       'Leia aqui!',

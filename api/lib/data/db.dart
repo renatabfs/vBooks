@@ -21,6 +21,7 @@ class DBHelper {
           email varchar(100), 
           senha varchar(100));
         ''';
+
     await db.execute(_user);
 
     await db.insert('USUARIO', {
@@ -192,6 +193,16 @@ class DBHelper {
       'imagem':
           'https://images-na.ssl-images-amazon.com/images/I/51-vkXYYH4L.jpg',
     });
+
+    String _favoritos = '''CREATE TABLE FAVORITOS (
+          id INTEGER PRIMARY KEY, 
+          bookid INTEGER,
+          userid INTEGER,
+          FOREIGN KEY (bookid) REFERENCES LIVROS(id),
+          FOREIGN KEY (userid) REFERENCES USUARIOS(id)
+        )''';
+
+    await db.execute(_favoritos);
   }
 
   //  Delete sqflite database

@@ -19,14 +19,12 @@ class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final emailInput = FormInput(
-      inputValue: "",
       label: "E-mail",
       hint: "example@mail.com",
       obscure: false,
       suffixIcon: Icon(Icons.mail_outline_rounded, color: Color(0xFFBDB8D9)));
 
   final senhaInput = FormInput(
-      inputValue: "",
       hint: "Senha",
       label: "Senha",
       obscure: true,
@@ -74,12 +72,12 @@ class _LoginState extends State<Login> {
                           }
                           _formKey.currentState!.save();
                           var usuario = await logar(
-                              emailInput.inputValue, senhaInput.inputValue);
+                              emailInput.inputValue.text, senhaInput.inputValue.text);
 
                           if (usuario != null) {
                             print(usuario);
                             usuarioProvider.setUsuario(usuario);
-                            Navigator.push(context, MaterialPageRoute(
+                            Navigator.pushReplacement(context, MaterialPageRoute(
                               builder: (context) {
                                 return const Navbar();
                               },

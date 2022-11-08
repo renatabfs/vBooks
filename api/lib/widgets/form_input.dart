@@ -6,7 +6,7 @@ class FormInput extends StatefulWidget {
   final String hint;
   final bool obscure;
   final Icon suffixIcon;
-  late String inputValue;
+  TextEditingController inputValue = TextEditingController();
 
   FormInput({
     Key? key,
@@ -14,7 +14,6 @@ class FormInput extends StatefulWidget {
     required this.hint,
     required this.obscure,
     required this.suffixIcon,
-    required this.inputValue,
   }) : super(key: key);
   @override
   State<FormInput> createState() => _FormInputState();
@@ -45,15 +44,7 @@ class _FormInputState extends State<FormInput> {
             }
             return null;
           },
-          onSaved: (value) {
-            if (value == null || value.isEmpty) {
-              return null;
-            } else {
-              setState(() {
-                widget.inputValue = value;
-              });
-            }
-          },
+          controller: widget.inputValue,
           obscureText: widget.obscure,
           keyboardType: TextInputType.visiblePassword,
           autofocus: false,

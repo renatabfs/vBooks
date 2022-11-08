@@ -19,21 +19,18 @@ class _CadastrarState extends State<Cadastrar> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final emailInput = FormInput(
-      inputValue: "",
       label: "E-mail",
       hint: "example@mail.com",
       obscure: false,
       suffixIcon: Icon(Icons.mail_outline_rounded, color: Color(0xFFBDB8D9)));
 
   final senhaInput = FormInput(
-      inputValue: "",
       label: "Senha",
       hint: "Senha",
       obscure: true,
       suffixIcon: Icon(Icons.lock_outline_rounded, color: Color(0xFFBDB8D9)));
 
   final nomeInput = FormInput(
-      inputValue: "",
       label: "Nome",
       hint: "Digite seu nome",
       obscure: false,
@@ -79,7 +76,7 @@ class _CadastrarState extends State<Cadastrar> {
                               await UsuariosBD().getUsuarios();
 
                           for (var usuario in usuarios) {
-                            if (usuario.email == emailInput.inputValue) {
+                            if (usuario.email == emailInput.inputValue.text) {
                               print("Erro de cadastro! O usuário já existe!");
                               showDialog<String>(
                                 context: context,
@@ -94,9 +91,9 @@ class _CadastrarState extends State<Cadastrar> {
 
                           Usuario usuario = Usuario(
                               id: usuarios.length + 1,
-                              nome: nomeInput.inputValue,
-                              email: emailInput.inputValue,
-                              senha: senhaInput.inputValue);
+                              nome: nomeInput.inputValue.text,
+                              email: emailInput.inputValue.text,
+                              senha: senhaInput.inputValue.text);
 
                           await UsuariosBD().insertUsuario(usuario);
 
@@ -104,7 +101,7 @@ class _CadastrarState extends State<Cadastrar> {
 
                           // Navivagate replace to navbar
 
-                          Navigator.push(context, MaterialPageRoute(
+                          Navigator.pushReplacement(context, MaterialPageRoute(
                             builder: (context) {
                               return const Navbar();
                             },

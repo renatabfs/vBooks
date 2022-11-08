@@ -138,8 +138,10 @@ class _DescriptionState extends State<Description> {
                   style: ElevatedButton.styleFrom(
                       elevation: 0,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
-                      backgroundColor: Color(0x0FFF2F2F2)),
+                          borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          primary: Color(0x0FFF2F2F2)
+                      ),
                   child: Icon(
                     Icons.bookmark_rounded,
                     color: Color(0x0FFF2D399),
@@ -156,7 +158,7 @@ class _DescriptionState extends State<Description> {
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)),
-                        backgroundColor: Color(0x0FF412F59)),
+                        primary: Color(0x0FF412F59)),
                     onPressed: (() {}),
                     child: Text(
                       'Leia aqui!',

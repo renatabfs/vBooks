@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:api/domain/livros.dart';
 import 'package:provider/provider.dart';
 
+import '../data/livrosBD.dart';
+
 class Favoritos extends StatefulWidget {
   const Favoritos({Key? key}) : super(key: key);
 
@@ -17,7 +19,7 @@ class _FavoritosState extends State<Favoritos> {
   @override
   Widget build(BuildContext context) {
     final usuarioProvider = Provider.of<UserController>(context);
-     Future<List<Livro>> futureLista = LivrosBD().getLivros();
+    Future<List<Livro>> futureLista = LivrosBD().getLivros();
 
     return Scaffold(
       backgroundColor: Colors.white,

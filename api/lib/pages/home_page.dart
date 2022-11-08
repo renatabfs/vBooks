@@ -88,7 +88,7 @@ class _Home_pageState extends State<Home_page> {
                                                 fontFamily: "Poppins",
                                                 color: Color(0x0FF9F8FBF),
                                               ),
-                                            )
+                                            ),
                                           ],
                                         ),
                                       ),

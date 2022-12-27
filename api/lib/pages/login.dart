@@ -1,11 +1,11 @@
 import 'package:api/controller/user_controller.dart';
+import 'package:api/data/usuarios_api.dart';
 import 'package:api/domain/usuarios.dart';
 import 'package:api/pages/cadastrar.dart';
 import 'package:api/pages/navbar.dart';
 import 'package:api/widgets/form_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:api/data/usuariosBD.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
@@ -71,13 +71,18 @@ class _LoginState extends State<Login> {
                             return;
                           }
                           _formKey.currentState!.save();
-                          var usuario = await logar(
-                              emailInput.inputValue.text, senhaInput.inputValue.text);
+                          Usuario reqBody = Usuario(
+                              email: emailInput.inputValue.text,
+                              senha: senhaInput.inputValue.text);
 
-                          if (usuario != null) {
+                          var response = await UsuariosApi().login(reqBody);
+
+                          if (response != null) {
+                            Usuario usuario = Usuario.fromJson(response);
                             print(usuario);
                             usuarioProvider.setUsuario(usuario);
-                            Navigator.pushReplacement(context, MaterialPageRoute(
+                            Navigator.pushReplacement(context,
+                                MaterialPageRoute(
                               builder: (context) {
                                 return const Navbar();
                               },
@@ -151,15 +156,4 @@ class _LoginState extends State<Login> {
       ),
     ));
   }
-}
-
-logar(String email, String senha) async {
-  List<Usuario> usuarios = await UsuariosBD().getUsuarios();
-  for (var usuario in usuarios) {
-    if (usuario.email == email && usuario.senha == senha) {
-      print("Achou: " + usuario.nome);
-      return usuario;
-    }
-  }
-  return null;
 }

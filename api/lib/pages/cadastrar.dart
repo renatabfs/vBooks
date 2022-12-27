@@ -1,11 +1,11 @@
 import 'package:api/controller/user_controller.dart';
+import 'package:api/data/usuarios_api.dart';
 import 'package:api/domain/usuarios.dart';
 import 'package:api/pages/login.dart';
 import 'package:api/pages/navbar.dart';
 import 'package:api/widgets/form_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:api/data/usuariosBD.dart';
 import 'package:provider/provider.dart';
 
 class Cadastrar extends StatefulWidget {
@@ -72,40 +72,42 @@ class _CadastrarState extends State<Cadastrar> {
                           }
                           _formKey.currentState!.save();
 
-                          List<Usuario> usuarios =
-                              await UsuariosBD().getUsuarios();
-
-                          for (var usuario in usuarios) {
-                            if (usuario.email == emailInput.inputValue.text) {
-                              print("Erro de cadastro! O usuário já existe!");
-                              showDialog<String>(
-                                context: context,
-                                builder: (BuildContext context) => AlertDialog(
-                                  title: const Text('Erro de cadastro!'),
-                                  content: const Text('O usuário já existe!'),
-                                ),
-                              );
-                              return;
-                            }
-                          }
-
                           Usuario usuario = Usuario(
-                              id: usuarios.length + 1,
                               nome: nomeInput.inputValue.text,
                               email: emailInput.inputValue.text,
                               senha: senhaInput.inputValue.text);
 
-                          await UsuariosBD().insertUsuario(usuario);
+                          var response =
+                              await UsuariosApi().createUser(usuario);
 
-                          usuarioProvider.setUsuario(usuario);
+                          if (!response) {
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text('Erro de cadastro!'),
+                                content: const Text(
+                                    'Não foi possível criar o usuário!'),
+                              ),
+                            );
+                            return;
+                          }
+                          // usuarioProvider.setUsuario(usuario);
+                          // // Navivagate replace to navbar
 
-                          // Navivagate replace to navbar
+                          // Navigator.pushReplacement(context, MaterialPageRoute(
+                          //   builder: (context) {
+                          //     return const Navbar();
+                          //   },
+                          // ));
 
-                          Navigator.pushReplacement(context, MaterialPageRoute(
-                            builder: (context) {
-                              return const Navbar();
-                            },
-                          ));
+                          showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text('Cadastro concluído!'),
+                              content: const Text('Usuário cadastrado!'),
+                            ),
+                          );
+                          return;
                         },
                         child: Padding(
                           padding: EdgeInsets.all(10),

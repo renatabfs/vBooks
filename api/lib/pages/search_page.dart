@@ -1,4 +1,4 @@
-import 'package:api/data/livrosBD.dart';
+import 'package:api/data/livros_api.dart';
 import 'package:api/domain/livros.dart';
 import 'package:api/widgets/bookTemplate.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +68,7 @@ class _SearchPageState extends State<SearchPage> {
 buildListView(String value) {
   if (value != null && value.length > 0 && value != "") {
     print("Tem conteúdo sim");
-    Future<List<Livro>> listaTotal = LivrosBD().getSearchedBook(value);
+    Future<List<Livro>> listaTotal = LivrosApi().getSearchedBook(value);
     return FutureBuilder<List<Livro>>(
       future: listaTotal,
       builder: (context, snapshot) {

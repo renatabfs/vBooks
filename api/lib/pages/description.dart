@@ -1,5 +1,4 @@
 import 'package:api/controller/user_controller.dart';
-import 'package:api/data/favoritosBD.dart';
 import 'package:api/domain/livros.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
@@ -138,9 +137,7 @@ class _DescriptionState extends State<Description> {
                 height: 64,
                 width: 64,
                 child: ElevatedButton(
-                  onPressed: () async {
-                    await FavoritosBD().insertFavorito(usuarioProvider.id, livro.id) ;
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
                     primary: Color(0x0FF412F59),

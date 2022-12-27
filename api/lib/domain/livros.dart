@@ -3,13 +3,13 @@ class Livro {
   late final String titulo;
   late final String autor;
   late final String sinopse;
-  late final int id;
+  late final String id;
   Livro(
-      {required this.imagem,
-      required this.titulo,
-      required this.autor,
-      required this.sinopse,
-      required this.id});
+      {this.imagem = '',
+      this.titulo = '',
+      this.autor = '',
+      this.sinopse = '',
+      this.id = ''});
 
   Livro.fromJson(Map<String, dynamic> json) {
     id = json['id'];

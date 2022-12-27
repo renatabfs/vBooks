@@ -1,4 +1,4 @@
-import 'package:api/data/livrosBD.dart';
+import 'package:api/data/livros_api.dart';
 import 'package:api/domain/livros.dart';
 import 'package:api/widgets/bookTemplate.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class Grid extends StatefulWidget {
 }
 
 class _GridState extends State<Grid> {
-  Future<List<Livro>> futureLista = LivrosBD().getLivros();
+  Future<List<Livro>> futureLista = LivrosApi().fetchLivros();
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Livro>>(

@@ -1,7 +1,7 @@
 class Favorito {
-  late final int id;
-  late final int bookid;
-  late final int userid;
+  late final String id;
+  late final String bookid;
+  late final String userid;
   Favorito({required this.userid, required this.bookid, required this.id});
 
   Favorito.fromJson(Map<String, dynamic> json) {

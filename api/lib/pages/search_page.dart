@@ -67,7 +67,6 @@ class _SearchPageState extends State<SearchPage> {
 
 buildListView(String value) {
   if (value != null && value.length > 0 && value != "") {
-    print("Tem conteúdo sim");
     Future<List<Livro>> listaTotal = LivrosApi().getSearchedBook(value);
     return FutureBuilder<List<Livro>>(
       future: listaTotal,
@@ -91,7 +90,6 @@ buildListView(String value) {
       },
     );
   }
-  print("Não tem conteúdo");
   return Container(
     height: 200,
     margin: EdgeInsets.only(top: 150),

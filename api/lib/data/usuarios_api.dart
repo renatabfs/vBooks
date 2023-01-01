@@ -27,7 +27,6 @@ class UsuariosApi {
     });
 
     var json = jsonDecode(response.body);
-    print(json);
 
     if (json["error"] != null) {
       return null;
@@ -39,7 +38,6 @@ class UsuariosApi {
   createUser(Usuario usuario) async {
     Uri url = Uri.http(_baseUrl, "/user");
     var body = jsonEncode(usuario);
-    print(body);
     Response response =
         await http.post(url, body: body, headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',

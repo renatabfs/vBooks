@@ -79,7 +79,6 @@ class _LoginState extends State<Login> {
 
                           if (response != null) {
                             Usuario usuario = Usuario.fromJson(response);
-                            print(usuario);
                             usuarioProvider.setUsuario(usuario);
                             Navigator.pushReplacement(context,
                                 MaterialPageRoute(

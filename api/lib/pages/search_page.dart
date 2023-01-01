@@ -1,6 +1,7 @@
 import 'package:api/data/livros_api.dart';
 import 'package:api/domain/livros.dart';
 import 'package:api/widgets/bookTemplate.dart';
+import 'package:api/widgets/grid.dart';
 import 'package:flutter/material.dart';
 
 class SearchPage extends StatefulWidget {
@@ -67,28 +68,8 @@ class _SearchPageState extends State<SearchPage> {
 
 buildListView(String value) {
   if (value != null && value.length > 0 && value != "") {
-    Future<List<Livro>> listaTotal = LivrosApi().getSearchedBook(value);
-    return FutureBuilder<List<Livro>>(
-      future: listaTotal,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          List<Livro> futureLista = snapshot.data ?? [];
-          return GridView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, mainAxisSpacing: 50, childAspectRatio: 0.6),
-            itemCount: futureLista.length,
-            itemBuilder: (context, index) {
-              return BookTemplate(
-                livro: futureLista[index],
-              );
-            },
-          );
-        }
-        return const Center(child: CircularProgressIndicator());
-      },
-    );
+    var listaTotal = LivrosApi().getSearchedBook(value);
+    return Grid(futureLista: listaTotal);
   }
   return Container(
     height: 200,

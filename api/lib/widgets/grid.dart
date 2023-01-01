@@ -1,10 +1,9 @@
-import 'package:api/data/livros_api.dart';
 import 'package:api/domain/livros.dart';
 import 'package:api/widgets/bookTemplate.dart';
 import 'package:flutter/material.dart';
 
 class Grid extends StatefulWidget {
-  final Future<List<Livro>> futureLista;
+  final Future<dynamic> futureLista;
   const Grid({Key? key, required this.futureLista}) : super(key: key);
 
   @override
@@ -12,15 +11,13 @@ class Grid extends StatefulWidget {
 }
 
 class _GridState extends State<Grid> {
-  Future<List<Livro>> futureLista = LivrosApi().fetchLivros();
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Livro>>(
-      future: futureLista,
+    return FutureBuilder<dynamic>(
+      future: widget.futureLista,
       builder: (context, snapshot) {
+        print(snapshot.data);
         if (snapshot.hasData) {
-          List<Livro> futureLista = snapshot.data ?? [];
-
           return GridView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -29,12 +26,11 @@ class _GridState extends State<Grid> {
             itemCount: snapshot.data?.length,
             itemBuilder: (context, index) {
               return BookTemplate(
-                livro: snapshot.data![index],
+                livro: Livro.fromJson(snapshot.data![index]),
               );
             },
           );
         }
-
         return const Center(child: CircularProgressIndicator());
       },
     );

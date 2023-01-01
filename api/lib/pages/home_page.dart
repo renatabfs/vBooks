@@ -1,8 +1,8 @@
 import 'package:api/controller/user_controller.dart';
-// import 'package:api/data/livros_api.dart';
+import 'package:api/data/livros_api.dart';
+import 'package:api/domain/livros.dart';
 import 'package:api/widgets/grid.dart';
 import 'package:flutter/material.dart';
-// import 'package:api/domain/livros.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -14,12 +14,12 @@ class Home_page extends StatefulWidget {
 }
 
 class _Home_pageState extends State<Home_page> {
-  // Future<List<Livro>> futureLista = LivrosApi().fetchLivros();
+  late var futureLivro;
 
   @override
   Widget build(BuildContext context) {
     var usuarioProvider = Provider.of<UserController>(context);
-
+    futureLivro = LivrosApi().fetchLivros();
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
@@ -102,6 +102,7 @@ class _Home_pageState extends State<Home_page> {
           SizedBox(
             height: 32,
           ),
+          Grid(futureLista: futureLivro),
         ],
       ),
     );

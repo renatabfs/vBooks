@@ -40,6 +40,7 @@ dependencies:
   sqflite: ^2.0.3+1
   readmore: ^2.2.0
   http: ^0.13.5
+  dotted_border: ^2.0.0
 
 dev_dependencies:
   flutter_test:

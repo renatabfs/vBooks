@@ -1,4 +1,6 @@
 import 'package:api/controller/user_controller.dart';
+import 'package:api/pages/cadastrar.dart';
+import 'package:api/pages/perrfil.dart';
 import 'package:flutter/material.dart';
 // ignore: unused_import
 import 'package:api/pages/landing_page.dart';

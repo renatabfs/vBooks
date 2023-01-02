@@ -2,6 +2,7 @@
 
 import 'package:api/pages/favoritos.dart';
 import 'package:api/pages/home_page.dart';
+import 'package:api/pages/perrfil.dart';
 import 'package:api/pages/search_page.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class _NavbarState extends State<Navbar> {
     Favoritos(),
     Home_page(),
     SearchPage(),
+    Perfil()
   ];
 
   void _onItemTapped(int index) {
@@ -66,6 +68,10 @@ class _NavbarState extends State<Navbar> {
             BottomNavigationBarItem(
               icon: Icon(Icons.search, size: 35),
               label: "Pesquisar",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.people, size: 35),
+              label: "Perfil",
             ),
           ],
           currentIndex: _selectedIndex,

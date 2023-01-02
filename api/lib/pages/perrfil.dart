@@ -24,7 +24,7 @@ class _PerfilState extends State<Perfil> {
             child: CircleAvatar(
               backgroundColor: Color(0x0FFB9D4D7),
               child: Text(
-                'D',
+                usuarioProvider.usuario.nome[0].toUpperCase(),
                 style: TextStyle(
                     fontFamily: 'Poppins',
                     fontSize: 36,

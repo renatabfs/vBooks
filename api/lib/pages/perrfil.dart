@@ -21,7 +21,8 @@ class _PerfilState extends State<Perfil> {
         Padding(
           padding: EdgeInsets.only(top: 50),
           child: DottedBorder(
-            child: CircleAvatar(
+            child: Center (
+              child: CircleAvatar(
               backgroundColor: Color(0x0FFB9D4D7),
               child: Text(
                 usuarioProvider.usuario.nome[0].toUpperCase(),
@@ -32,10 +33,11 @@ class _PerfilState extends State<Perfil> {
                     fontWeight: FontWeight.w600),
               ),
               radius: 50,
+            )
             ),
             borderType: BorderType.Circle,
             dashPattern: [10, 5, 10, 5, 10, 5],
-            color: Colors.grey,
+            color: Color(0x0FFB9D4D7),
             strokeWidth: 3,
           ),
         ),

@@ -46,7 +46,7 @@ class UsuariosApi {
     return json;
   }
 
-  fetchFavorites() async {
+ fetchFavorites(String usuarioID) async {
     Livro livro = Livro();
     return [livro];
   }

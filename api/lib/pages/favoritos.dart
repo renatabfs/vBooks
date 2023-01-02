@@ -20,7 +20,7 @@ class _FavoritosState extends State<Favoritos> {
   @override
   Widget build(BuildContext context) {
     final usuarioProvider = Provider.of<UserController>(context);
-    futureFavoritos = LivrosApi().fetchLivros();
+    futureFavoritos = UsuariosApi().fetchFavorites(usuarioProvider.usuario.id);
 
     return Scaffold(
       backgroundColor: Colors.white,

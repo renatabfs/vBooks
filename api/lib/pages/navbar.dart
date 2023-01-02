@@ -70,7 +70,7 @@ class _NavbarState extends State<Navbar> {
               label: "Pesquisar",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.people, size: 35),
+              icon: Icon(Icons.person, size: 35),
               label: "Perfil",
             ),
           ],

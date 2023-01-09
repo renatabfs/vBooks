@@ -16,7 +16,6 @@ class _GridState extends State<Grid> {
     return FutureBuilder<dynamic>(
       future: widget.futureLista,
       builder: (context, snapshot) {
-        print(snapshot.data);
         if (snapshot.hasData) {
           return GridView.builder(
             physics: const NeverScrollableScrollPhysics(),

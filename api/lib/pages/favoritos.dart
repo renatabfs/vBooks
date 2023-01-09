@@ -1,10 +1,7 @@
 import 'package:api/controller/user_controller.dart';
-import 'package:api/data/livros_api.dart';
 import 'package:api/data/usuarios_api.dart';
-import 'package:api/widgets/bookTemplate.dart';
 import 'package:api/widgets/grid.dart';
 import 'package:flutter/material.dart';
-import 'package:api/domain/livros.dart';
 import 'package:provider/provider.dart';
 
 class Favoritos extends StatefulWidget {
@@ -20,7 +17,7 @@ class _FavoritosState extends State<Favoritos> {
   @override
   Widget build(BuildContext context) {
     final usuarioProvider = Provider.of<UserController>(context);
-    futureFavoritos = LivrosApi().fetchLivros();
+    futureFavoritos = UsuariosApi().fetchFavorites(usuarioProvider.usuario.id);
 
     return Scaffold(
       backgroundColor: Colors.white,

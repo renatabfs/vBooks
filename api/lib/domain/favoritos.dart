@@ -1,19 +1,19 @@
 class Favorito {
   late final String id;
-  late final String bookid;
+  late final String livroId;
   late final String userid;
-  Favorito({required this.userid, required this.bookid, required this.id});
+  Favorito({required this.userid, required this.livroId, required this.id});
 
   Favorito.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    bookid = json['bookid'];
+    livroId = json['livroId'];
     userid = json['userid'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['bookid'] = this.bookid;
+    data['livroId'] = this.livroId;
     data['userid'] = this.userid;
     return data;
   }

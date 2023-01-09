@@ -1,4 +1,5 @@
 import 'package:api/controller/user_controller.dart';
+import 'package:api/data/usuarios_api.dart';
 import 'package:api/domain/livros.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
@@ -18,14 +19,30 @@ class Description extends StatefulWidget {
 
 class _DescriptionState extends State<Description> {
   Livro get livro => widget.livros;
+  var isFavorite;
 
   @override
   Widget build(BuildContext context) {
-    var usuarioProvider = Provider.of<UserController>(context).usuario;
+    var provider = Provider.of<UserController>(context);
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-
     double imageSize = width * 0.6;
+
+    if (isFavorite == null) {
+      for (Livro livroFavorito in provider.favoritos) {
+        if (livroFavorito.id == livro.id) {
+          setState(() {
+            isFavorite = true;
+          });
+        }
+      }
+      if (isFavorite == null) {
+        setState(() {
+          isFavorite = false;
+        });
+      }
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -137,7 +154,18 @@ class _DescriptionState extends State<Description> {
                 height: 64,
                 width: 64,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (!isFavorite) {
+                      var response = await UsuariosApi()
+                          .addFavorite(provider.usuario.id, livro.id);
+                      if (response == true) {
+                        setState(() {
+                          isFavorite = true;
+                        });
+                      }
+                    }
+                    provider.fetchFavoritos();
+                  },
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
                     primary: Color(0x0FF412F59),
@@ -146,7 +174,7 @@ class _DescriptionState extends State<Description> {
                   ),
                   child: Icon(
                     Icons.bookmark_rounded,
-                    color: Color(0x0FFF2D399),
+                    color: isFavorite ? Colors.green : Colors.white,
                     size: 35,
                   ),
                 ))),
